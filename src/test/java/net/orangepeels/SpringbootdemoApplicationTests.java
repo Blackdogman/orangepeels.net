@@ -1,4 +1,4 @@
-package net.orangepeels.springbootdemo;
+package net.orangepeels;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
