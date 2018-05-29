@@ -1,0 +1,13 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #333333;
+    color: white;
+}
+
+.content {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    color: inherit;
+}
