@@ -1,8 +1,14 @@
+html {
+    height: 100%;
+}
+
 body {
     padding: 0;
     margin: 0;
     background-color: #fafafa;
     color: #444444;
+    min-height: 100%;
+    position: relative;
 }
 
 #top {
@@ -56,8 +62,16 @@ body {
     border-radius: 0;
 }
 
+#content {
+    padding-top: 50px;
+    padding-bottom: 100px;
+}
+
 #footer {
+    width: 100%;
     text-align: right;
+    position: absolute;
+    bottom: 0;
 }
 
 
