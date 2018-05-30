@@ -1,11 +1,11 @@
 html {
     height: 100%;
+    background-color: white;
 }
 
 body {
     padding: 0;
     margin: 0;
-    background-color: #fafafa;
     color: #444444;
     min-height: 100%;
     position: relative;
@@ -21,7 +21,6 @@ body {
     width: 175px;
     display: block;
     margin-top: 5px;
-    margin-left: 15px;
 }
 
 #logo img {
@@ -29,26 +28,26 @@ body {
     width: 175px;
 }
 
-#top-right {
+.bdm-top-right {
     height: 100%;
 }
 
-#top-right ul {
+.bdm-top-right ul {
     height: 100%;
     float: right;
     list-style: none;
 }
 
-#top-right li {
+.bdm-top-right li {
     height: 100%;
     display: block;
     float: left;
 }
 
-#top-right a {
+.bdm-top-right a {
     color: #ffffff;
     height: 100%;
-    font-size: 18px;
+    font-size: 14px;
     display: block;
     padding: 0 15px;
     line-height: 50px;
@@ -56,7 +55,7 @@ body {
     text-decoration: none;
 }
 
-#top-right a:hover {
+.bdm-top-right a:hover {
     background-color: #8cd07f;
     color: #44444d;
     border-radius: 0;

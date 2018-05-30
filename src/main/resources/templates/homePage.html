@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Welcome to OrangePeels</title>
+    <link rel="shortcut icon" href="/img/S/orangepeelsSmallLogo.png" type="image/x-icon">
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.css"/>
     <link rel="stylesheet" href="/bootstrap/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/css/homePage.css"/>
@@ -9,23 +10,44 @@
     <script src="/bootstrap/js/bootstrap.js"></script>
 </head>
 <body>
-<nav>
-    <div class="col-sm-12 navbar-fixed-top" id="top">
-        <div class="col-sm-5">
-            <a id="logo" href="#"><img src="/img/L/orangepeelsLogo.png" alt="logo"/></a>
+<nav class="navbar-fixed-top" id="top">
+    <div class="container" >
+        <div class="col-sm-4 hidden-xs">
+            <a id="logo" href="/"><img src="/img/L/orangepeelsLogo.png" alt="logo"/></a>
         </div>
-        <div class="col-sm-7" id="top-right">
+        <div class="col-sm-8 hidden-xs bdm-top-right">
             <ul>
                 <li><a href="#">Projects</a></li>
-                <li><a href="#">Github</a></li>
+                <li><a href="https://github.com/Blackdogman/orangepeels.net.git">Github</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Creator</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-12 visible-xs bdm-top-right">
+            <ul>
+                <li><a href="#"><img src="/img/S/orangepeelsSmallLogo.png" width="30px;" height="30px;" alt=""></a></li>
+                <li><a href="#">Projects</a></li>
+                <li><a href="https://github.com/Blackdogman/orangepeels.net.git">Github</a></li>
                 <li><a href="#">Blog</a></li>
                 <li><a href="#">Creator</a></li>
             </ul>
         </div>
     </div>
 </nav>
-<div id="content">
 
+<div id="content">
+    <div style="background-color: #fafafa;" >
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8" style="height: 250px;">
+                    col-sm-8
+                </div>
+                <div class="col-sm-4" style="height: 100px;">
+                    col-sm-4s
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="panel-footer" id="footer">
     <p>Made by Blackogman. OrangePeels 2018</p>
