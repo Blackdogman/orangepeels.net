@@ -1,13 +1,50 @@
 body {
     padding: 0;
     margin: 0;
-    background-color: #333333;
-    color: white;
+    background-color: #fafafa;
+    color: #444444;
 }
 
-.content {
-    padding-top: 30px;
-    padding-bottom: 30px;
-    margin-bottom: 30px;
-    color: inherit;
+#top {
+    height: 50px;
+    background-color: #449e3a;
+    position: fixed;
+    top: 0;
 }
+
+#logo {
+    height: 36px;
+    width: 175px;
+    display: block;
+    margin-top: 5px;
+    margin-left: 15px;
+}
+
+#logo img {
+    height: 36px;
+    width: 175px;
+}
+
+#top-right {
+    height: 100%;
+}
+
+#top-right ul {
+    height: 100%;
+    float: right;
+}
+
+#top-right li {
+    line-height: 210%;
+}
+
+#top-right a {
+    color: #ffffff;
+}
+
+#top-right a:hover {
+    background-color: #8cd07f;
+    color: #44444d;
+    border-radius: 0;
+}
+
