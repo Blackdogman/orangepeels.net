@@ -6,10 +6,8 @@ body {
 }
 
 #top {
-    height: 50px;
     background-color: #449e3a;
-    position: fixed;
-    top: 0;
+    height: 50px;
 }
 
 #logo {
@@ -32,14 +30,24 @@ body {
 #top-right ul {
     height: 100%;
     float: right;
+    list-style: none;
 }
 
 #top-right li {
-    line-height: 210%;
+    height: 100%;
+    display: block;
+    float: left;
 }
 
 #top-right a {
     color: #ffffff;
+    height: 100%;
+    font-size: 18px;
+    display: block;
+    padding: 0 15px;
+    line-height: 50px;
+    text-align: center;
+    text-decoration: none;
 }
 
 #top-right a:hover {
@@ -47,4 +55,5 @@ body {
     color: #44444d;
     border-radius: 0;
 }
+
 
