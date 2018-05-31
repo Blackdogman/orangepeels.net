@@ -1,7 +1,7 @@
 spring:
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/mybatis?characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://
     username: root
-    password: test
+    password: demo
     driver-class-name: com.mysql.jdbc.Driver
 
