@@ -42,10 +42,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-8" style="height: 250px;">
-                    col-sm-8
                 </div>
                 <div class="col-sm-4" style="height: 100px;">
-                    col-sm-4s
                 </div>
             </div>
         </div>
@@ -56,3 +54,20 @@
 </div>
 </body>
 </html>
+
+<script>
+    function test(){
+        $.ajax({
+            type: "POST",
+            url: "/test",
+            data: {
+              user_name: "blackdogman",
+              user_pwd: "hello~~~"
+            },
+            dataType: "json",
+            success: function(req) {
+                console.log(req);
+            }
+        });
+    }
+</script>
