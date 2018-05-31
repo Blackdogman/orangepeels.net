@@ -1,5 +1,6 @@
 package net.orangepeels.utils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -20,19 +21,44 @@ public class JSONtools {
      */
     public static <T> String toJSON(T item){
         String reStr = "";
-        System.out.println(item);
+
+
         return "";
     }
 
-    private static <T> String toJSON(List<T> list) {
+    private static  <T> String toJSON(List<T> list) {
+        System.out.println("调用了List<T>");
+        System.out.println(list);
         return "";
     }
 
-    private static <T> String toJSON(Set<T> list) {
+    private static  <T> String toJSON(Set<T> list) {
         return "";
     }
 
-    private static <T> String toJSON(Map<String, T> list) {
+    private static  <T> String toJSON(Map<String, T> list) {
         return "";
     }
+
+    /**
+     * 用于来选择分支遍历，感觉不太对啊
+     * @param item
+     * @param <T>
+     * @return
+     */
+    private static <T> String branch(T item){
+        String reStr = "";
+        if(List.class.isAssignableFrom(item.getClass())){
+            reStr = toJSON((List)item);
+        }
+        if(Set.class.isAssignableFrom(item.getClass())){
+            reStr = toJSON((Set)item);
+        }
+        if(Map.class.isAssignableFrom(item.getClass())){
+            reStr = toJSON((Map)item);
+        }
+        reStr = toJSON(item);
+        return reStr;
+    }
+
 }
