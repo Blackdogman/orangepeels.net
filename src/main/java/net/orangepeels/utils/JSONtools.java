@@ -96,7 +96,7 @@ public class JSONtools {
                     list2) {
                 if (item.getName().indexOf("get") != -1 && !"getClass".equals(item.getName())) {
                     try {
-                        reStr += "\"" + item.getName() + "\":\"" + item.invoke(obj) + "\"";
+                        reStr += "\"" + item.getName().substring(3, item.getName().length()).toLowerCase() + "\":\"" + item.invoke(obj) + "\"";
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
                     } catch (InvocationTargetException e) {
