@@ -1,5 +1,6 @@
 package net.orangepeels.utils;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -20,23 +21,40 @@ public class JSONtools {
      */
     public static <T> String toJSON(T item){
         String reStr = "";
-
-
-        return "";
+        reStr = branch(item);
+        return reStr;
     }
 
-    private static  <T> String toJSON(List<T> list) {
-        System.out.println("调用了List<T>");
-        System.out.println(list);
-        return "";
+    private static  <T> String getJSON(Collection<T> list) {
+        String reStr = "";
+        reStr += "[";
+        for (T item:
+             list) {
+            reStr += branch(item);
+            reStr += ",";
+        }
+        reStr = reStr.substring(0, reStr.length()-1);
+        reStr += "]";
+        return reStr;
     }
 
-    private static  <T> String toJSON(Set<T> list) {
-        return "";
+    private static  <T> String getJSON(Map<String, T> list) {
+        String reStr = "";
+        Set<Map.Entry<String, T>> setList = list.entrySet();
+        reStr += "{";
+        for (Map.Entry<String, T> item:
+             setList) {
+            reStr += "\"" + item.getKey() + "\":";
+            reStr += branch(item.getValue());
+            reStr += ",";
+        }
+        reStr = reStr.substring(0, reStr.length()-1);
+        reStr += "}";
+        return reStr;
     }
 
-    private static  <T> String toJSON(Map<String, T> list) {
-        return "";
+    private static String getJSON(Object item){
+        return "\"" + item.toString() + "\"";
     }
 
     /**
@@ -47,16 +65,14 @@ public class JSONtools {
      */
     private static <T> String branch(T item){
         String reStr = "";
-        if(List.class.isAssignableFrom(item.getClass())){
-            reStr = toJSON((List)item);
+        reStr = item.toString();
+        if(Collection.class.isAssignableFrom(item.getClass())){
+            reStr = getJSON((Collection)item);
+        }else if(Map.class.isAssignableFrom(item.getClass())){
+            reStr = getJSON((Map)item);
+        }else {
+            reStr = getJSON(item);
         }
-        if(Set.class.isAssignableFrom(item.getClass())){
-            reStr = toJSON((Set)item);
-        }
-        if(Map.class.isAssignableFrom(item.getClass())){
-            reStr = toJSON((Map)item);
-        }
-        reStr = toJSON(item);
         return reStr;
     }
 
