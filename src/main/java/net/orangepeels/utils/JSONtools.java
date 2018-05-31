@@ -25,12 +25,7 @@ public class JSONtools {
     }
 
     private static <T> String toJSON(List<T> list) {
-        String reStr = "";
-        for (T item :
-                list) {
-
-        }
-        return reStr;
+        return "";
     }
 
     private static <T> String toJSON(Set<T> list) {
