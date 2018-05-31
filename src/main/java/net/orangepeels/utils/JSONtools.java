@@ -25,6 +25,12 @@ public class JSONtools {
         return reStr;
     }
 
+    /**
+     * 把Collection接口下面那几个哥们儿转化为JSON格式
+     * @param list
+     * @param <T>
+     * @return
+     */
     private static  <T> String getJSON(Collection<T> list) {
         String reStr = "";
         reStr += "[";
@@ -38,6 +44,12 @@ public class JSONtools {
         return reStr;
     }
 
+    /**
+     * 把Map转化为JSON格式
+     * @param list
+     * @param <T>
+     * @return
+     */
     private static  <T> String getJSON(Map<String, T> list) {
         String reStr = "";
         Set<Map.Entry<String, T>> setList = list.entrySet();
@@ -53,12 +65,17 @@ public class JSONtools {
         return reStr;
     }
 
+    /**
+     * 该死的最复杂情况，有可能是数据对象，有可能是bean对象
+     * @param item
+     * @return
+     */
     private static String getJSON(Object item){
         return "\"" + item.toString() + "\"";
     }
 
     /**
-     * 用于来选择分支遍历，感觉不太对啊
+     * 用于来选择分支遍历
      * @param item
      * @param <T>
      * @return
