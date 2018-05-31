@@ -13,13 +13,13 @@ spring:
   profiles:
     active: dev
   thymeleaf:
-    prefix: /templates/
+    prefix: classpath:/templates/
     suffix: .html
     mode: HTML
     encoding: UTF-8
     cache: false
 mybatis:
-  mapper-locations: /mapper/*.xml
+  mapper-locations: classpath:/mapper/*.xml
   configuration:
     map-underscore-to-camel-case: true
     use-column-label: true
