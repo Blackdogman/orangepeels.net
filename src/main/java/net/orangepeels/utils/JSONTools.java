@@ -9,8 +9,8 @@ import java.util.Set;
 /**
  * 用来格式化为json的类
  */
-public class JSONtools {
-    private JSONtools() {
+public class JSONTools {
+    private JSONTools() {
         //防止实例化该工具类
     }
 
