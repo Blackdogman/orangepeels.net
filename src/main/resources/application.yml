@@ -1,0 +1,23 @@
+server:
+  port: 8080
+  connection-timeout: 30m
+  tomcat:
+    max-threads: 10
+    uri-encoding: utf-8
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/mybatis?characterEncoding=utf8&useSSL=false
+    username: root
+    password: superboy123
+    driver-class-name: com.mysql.jdbc.Driver
+  thymeleaf:
+    prefix: /templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+    cache: false
+mybatis:
+  mapper-locations: /mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    use-column-label: true
