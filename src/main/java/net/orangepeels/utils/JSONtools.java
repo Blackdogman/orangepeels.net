@@ -19,104 +19,86 @@ public class JSONtools {
      *
      * @param item 进来的参数，按理说可以是任何类型
      * @param <T>  定义泛型，按理说可以是任意类型
-     * @return
+     * @return json字符串
      */
     public static <T> String toJSON(T item) {
-        String reStr = "";
-        reStr = branch(item);
+        String reStr = branch(item);
         return reStr;
     }
 
     /**
      * 把Collection接口下面那几个哥们儿转化为JSON格式
-     *
-     * @param list
-     * @param <T>
-     * @return
      */
     private static <T> String getJSON(Collection<T> list) {
-        String reStr = "";
-        reStr += "[";
+        StringBuilder reStr = new StringBuilder();
+        reStr.append("[");
         for (T item :
                 list) {
-            reStr += branch(item);
-            reStr += ",";
+            reStr.append(branch(item));
+            reStr.append(",");
         }
-        reStr = reStr.substring(0, reStr.length() - 1);
-        reStr += "]";
-        return reStr;
+        reStr = new StringBuilder(reStr.substring(0, reStr.length() - 1));
+        reStr.append("]");
+        return reStr.toString();
     }
 
     /**
      * 把Map转化为JSON格式
-     *
-     * @param list
-     * @param <T>
-     * @return
      */
     private static <T> String getJSON(Map<String, T> list) {
-        String reStr = "";
+        StringBuilder reStr = new StringBuilder();
         Set<Map.Entry<String, T>> setList = list.entrySet();
-        reStr += "{";
+        reStr.append("{");
         for (Map.Entry<String, T> item :
                 setList) {
-            reStr += "\"" + item.getKey() + "\":";
-            reStr += branch(item.getValue());
-            reStr += ",";
+            reStr.append("\"").append(item.getKey()).append("\":");
+            reStr.append(branch(item.getValue()));
+            reStr.append(",");
         }
-        reStr = reStr.substring(0, reStr.length() - 1);
-        reStr += "}";
-        return reStr;
+        reStr = new StringBuilder(reStr.substring(0, reStr.length() - 1));
+        reStr.append("}");
+        return reStr.toString();
     }
 
     /**
      * 该死的最复杂情况，有可能是数据对象，有可能是bean对象
-     *
-     * @param obj
-     * @return
      */
     private static String getJSON(Object obj) {
-        String reStr = "";
+        StringBuilder reStr = new StringBuilder();
         Class<?> cs = obj.getClass();
         //数值类型不做操作
         if ( cs == Byte.class || cs == Integer.class || cs == Long.class
                 || cs == Float.class || cs == Double.class
                 || cs == Boolean.class) {
-            reStr += obj.toString();
+            reStr.append(obj.toString());
         }
         //字符串和字符类型加个引号
         if (cs == Character.class || cs == String.class) {
-            reStr += "\"";
-            reStr += obj.toString();
-            reStr += "\"";
+            reStr.append("\"");
+            reStr.append(obj.toString());
+            reStr.append("\"");
         } else { //处理bean对象
             Method[] list2 = cs.getMethods();
-            reStr += "{";
+            reStr.append("{");
             for (Method item :
                     list2) {
-                if (item.getName().indexOf("get") != -1 && !"getClass".equals(item.getName())) {
+                if (item.getName().contains("get") && !"getClass".equals(item.getName())) {
                     try {
-                        reStr += "\"" + item.getName().substring(3, item.getName().length()).toLowerCase() + "\":\"" + item.invoke(obj) + "\"";
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    } catch (InvocationTargetException e) {
+                        reStr.append("\"").append(item.getName().substring(3, item.getName().length()).toLowerCase()).append("\":\"").append(item.invoke(obj)).append("\"");
+                    } catch (IllegalAccessException | InvocationTargetException e) {
                         e.printStackTrace();
                     }
-                    reStr += ",";
+                    reStr.append(",");
                 }
             }
-            reStr = reStr.substring(0, reStr.length() - 1);
-            reStr += "}";
+            reStr = new StringBuilder(reStr.substring(0, reStr.length() - 1));
+            reStr.append("}");
         }
-        return reStr;
+        return reStr.toString();
     }
 
     /**
      * 用于来选择分支遍历
-     *
-     * @param item
-     * @param <T>
-     * @return
      */
     private static <T> String branch(T item) {
         String reStr;
