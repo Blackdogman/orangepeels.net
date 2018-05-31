@@ -6,10 +6,12 @@ server:
     uri-encoding: utf-8
 spring:
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/mybatis?characterEncoding=utf8&useSSL=false
-    username: root
-    password: superboy123
-    driver-class-name: com.mysql.jdbc.Driver
+    url:
+    username:
+    password:
+    driver-class-name:
+  profiles:
+    active: dev
   thymeleaf:
     prefix: /templates/
     suffix: .html
