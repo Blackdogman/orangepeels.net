@@ -20,6 +20,7 @@ public class JSONtools {
      */
     public static <T> String toJSON(T item){
         String reStr = "";
+        System.out.println(item);
         return "";
     }
 
