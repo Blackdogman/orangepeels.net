@@ -64,20 +64,3 @@
 </div>
 </body>
 </html>
-
-<script>
-    function test() {
-        $.ajax({
-            type: "POST",
-            url: "/test",
-            data: {
-                user_name: "blackdogman",
-                user_pwd: "hello~~~"
-            },
-            dataType: "json",
-            success: function (req) {
-                console.log(req);
-            }
-        });
-    }
-</script>
