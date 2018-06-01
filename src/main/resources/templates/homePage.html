@@ -3,16 +3,10 @@
 <head>
     <title>Welcome to OrangePeels</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="img/S/orangepeelsSmallLogo.png" type="image/x-icon">
-    <link rel="stylesheet" href="tools/bootstrap/css/bootstrap.css"/>
+    <div th:include="model/headerimport :: headerimport"></div>
     <link rel="stylesheet" href="css/homePage.css"/>
-    <link rel="stylesheet" href="css/base/bdmOrange.css"/>
-    <script src="tools/jquery-3.3.1.min.js"></script>
-    <script src="tools/bootstrap/js/bootstrap.js"></script>
-    <script src="tools/prettify/prettify.min.js"></script>
-    <link rel="stylesheet" href="tools/prettify/prettify.min.css">
 </head>
-<body onload="prettyPrint()">
+<body>
 <nav class="navbar-fixed-top" id="top">
     <div class="container">
         <div class="col-sm-4 hidden-xs">
