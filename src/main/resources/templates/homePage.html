@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="/img/S/orangepeelsSmallLogo.png" type="image/x-icon">
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.css"/>
-    <link rel="stylesheet" href="/bootstrap/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/css/homePage.css"/>
     <link rel="stylesheet" href="/css/base/bdmOrange.css"/>
     <script src="/bootstrap/js/jquery-3.3.1.min.js"></script>
@@ -13,7 +12,7 @@
 </head>
 <body>
 <nav class="navbar-fixed-top" id="top">
-    <div class="container" >
+    <div class="container">
         <div class="col-sm-4 hidden-xs">
             <a id="logo" href="/"><img src="/img/L/orangepeelsLogo.png" alt="logo"/></a>
         </div>
@@ -38,14 +37,31 @@
 </nav>
 
 <div id="content">
-    <div class="bdm-faDiv" >
+    <div class="bdm-faDiv">
         <div class="container">
-            <div class="row">
-                <div class="col-sm-8" style="height: 250px;">
-                </div>
-                <div class="col-sm-4" style="height: 100px;">
-                </div>
-            </div>
+            <p>
+                <button type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-sort-by-attributes"></span>
+                </button>
+                <button type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
+                </button>
+                <button type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-sort-by-order"></span>
+                </button>
+                <button type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-sort-by-order-alt"></span>
+                </button>
+            </p>
+            <button type="button" class="btn btn-default btn-lg">
+                <span class="glyphicon glyphicon-user"></span> User
+            </button>
+            <button type="button" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-user"></span> User
+            </button>
+            <button type="button" class="btn btn-default btn-xs">
+                <span class="glyphicon glyphicon-user"></span> User
+            </button>
         </div>
     </div>
 </div>
@@ -56,16 +72,16 @@
 </html>
 
 <script>
-    function test(){
+    function test() {
         $.ajax({
             type: "POST",
             url: "/test",
             data: {
-              user_name: "blackdogman",
-              user_pwd: "hello~~~"
+                user_name: "blackdogman",
+                user_pwd: "hello~~~"
             },
             dataType: "json",
-            success: function(req) {
+            success: function (req) {
                 console.log(req);
             }
         });
