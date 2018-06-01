@@ -92,7 +92,7 @@
                 <filtering>true</filtering>
                 <excludes>
                     <exclude>static/fonts/**</exclude>
-                    <exclude>static/bootstrap/fonts/**</exclude>
+                    <exclude>static/tools/bootstrap/fonts/**</exclude>
                 </excludes>
             </resource>
             <resource>
@@ -100,7 +100,7 @@
                 <filtering>false</filtering>
                 <includes>
                     <include>static/fonts/**</include>
-                    <include>static/bootstrap/fonts/**</include>
+                    <include>static/tools/bootstrap/fonts/**</include>
                 </includes>
             </resource>
         </resources>
