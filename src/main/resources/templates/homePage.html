@@ -3,18 +3,20 @@
 <head>
     <title>Welcome to OrangePeels</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="/img/S/orangepeelsSmallLogo.png" type="image/x-icon">
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css"/>
-    <link rel="stylesheet" href="/css/homePage.css"/>
-    <link rel="stylesheet" href="/css/base/bdmOrange.css"/>
-    <script src="/bootstrap/js/jquery-3.3.1.min.js"></script>
-    <script src="/bootstrap/js/bootstrap.js"></script>
+    <link rel="shortcut icon" href="img/S/orangepeelsSmallLogo.png" type="image/x-icon">
+    <link rel="stylesheet" href="tools/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/homePage.css"/>
+    <link rel="stylesheet" href="css/base/bdmOrange.css"/>
+    <script src="tools/jquery-3.3.1.min.js"></script>
+    <script src="tools/bootstrap/js/bootstrap.js"></script>
+    <script src="tools/prettify/prettify.min.js"></script>
+    <link rel="stylesheet" href="tools/prettify/prettify.min.css">
 </head>
-<body>
+<body onload="prettyPrint()">
 <nav class="navbar-fixed-top" id="top">
     <div class="container">
         <div class="col-sm-4 hidden-xs">
-            <a id="logo" href="/"><img src="/img/L/orangepeelsLogo.png" alt="logo"/></a>
+            <a id="logo" href="/"><img src="img/L/orangepeelsLogo.png" alt="logo"/></a>
         </div>
         <div class="col-sm-8 hidden-xs bdm-top-right">
             <ul>
@@ -26,7 +28,7 @@
         </div>
         <div class="col-sm-12 visible-xs bdm-top-right">
             <ul>
-                <li><a href="#"><img src="/img/S/orangepeelsSmallLogo.png" width="30px;" height="30px;" alt=""></a></li>
+                <li><a href="#"><img src="img/S/orangepeelsSmallLogo.png" width="30px;" height="30px;" alt=""></a></li>
                 <li><a href="#">Projects</a></li>
                 <li><a href="https://github.com/Blackdogman/orangepeels.net.git">Github</a></li>
                 <li><a href="#">Blog</a></li>
@@ -39,29 +41,17 @@
 <div id="content">
     <div class="bdm-faDiv">
         <div class="container">
-            <p>
-                <button type="button" class="btn btn-default">
-                    <span class="glyphicon glyphicon-sort-by-attributes"></span>
-                </button>
-                <button type="button" class="btn btn-default">
-                    <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
-                </button>
-                <button type="button" class="btn btn-default">
-                    <span class="glyphicon glyphicon-sort-by-order"></span>
-                </button>
-                <button type="button" class="btn btn-default">
-                    <span class="glyphicon glyphicon-sort-by-order-alt"></span>
-                </button>
-            </p>
-            <button type="button" class="btn btn-default btn-lg">
-                <span class="glyphicon glyphicon-user"></span> User
-            </button>
-            <button type="button" class="btn btn-default btn-sm">
-                <span class="glyphicon glyphicon-user"></span> User
-            </button>
-            <button type="button" class="btn btn-default btn-xs">
-                <span class="glyphicon glyphicon-user"></span> User
-            </button>
+            <pre class="prettyprint" style="border: none; background: none;">
+                <code class="language-java">
+                /**
+                * 欢迎来到OrangePeels
+                * @author Blackdogman.
+                */
+                Public void hello() {
+                    System.out.println("Hello OrangePeels");
+                }
+                </code>
+            </pre>
         </div>
     </div>
 </div>
