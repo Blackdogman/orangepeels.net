@@ -18,6 +18,9 @@ spring:
     mode: HTML
     encoding: UTF-8
     cache: false
+  mvc:
+    favicon:
+      enabled: false
 mybatis:
   mapper-locations: classpath:/mapper/*.xml
   configuration:
