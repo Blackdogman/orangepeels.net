@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<!-- components/header.html -->
 <header th:fragment="headerimport">
+    <!--启用bootstrap的设备响应式布局-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--浏览器标签图标-->
     <link rel="shortcut icon" href="img/S/orangepeelsSmallLogo.png" type="image/x-icon">
-    <link rel="stylesheet" href="tools/bootstrap/css/bootstrap.css"/>
-    <link rel="stylesheet" href="css/base/orangepeels.css"/>
-    <link rel="stylesheet" href="tools/prettify/prettify.min.css">
+    <!--引入JQuery-->
     <script src="tools/jquery-3.3.1.min.js"></script>
+    <!--引入BootStrap-->
+    <link rel="stylesheet" href="tools/bootstrap/css/bootstrap.css"/>
     <script src="tools/bootstrap/js/bootstrap.js"></script>
+    <!--引入prettify代码着色器-->
+    <link rel="stylesheet" href="tools/prettify/prettify.min.css">
     <script src="tools/prettify/prettify.min.js"></script>
+    <!--引入自己写的js与css-->
     <script src="js/base/orangepeels.js"></script>
+    <link rel="stylesheet" href="css/base/orangepeels.css"/>
 </header>
