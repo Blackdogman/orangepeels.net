@@ -2,8 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Welcome to OrangePeels</title>
-    <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
-    <div th:include="model/headerimport :: headerimport"></div>
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon"/>
+    <!--引入CSS库-->
+    <div th:include="model/importCss :: importCss"></div>
     <!--浏览器标签图标-->
     <link rel="stylesheet" href="css/homePage.css"/>
 </head>
@@ -23,7 +24,9 @@
         </div>
         <div class="col-xs-12 visible-xs bdm-top-right2">
             <ul id="bdm-top-right2-ul" class="pull-right">
-                <li class="bdm-top-right2-li col-xs-5"><a href="#" id="sLogo"><img src="img/S/orangepeelsSmallLogo.png" width="30px;" height="30px;" alt=""></a></li>
+                <li class="bdm-top-right2-li col-xs-5"><a href="#" id="sLogo"><img src="img/S/orangepeelsSmallLogo.png"
+                                                                                   width="30px;" height="30px;" alt=""></a>
+                </li>
                 <li class="bdm-top-right2-li dropdown col-xs-7">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <span class="glyphicon glyphicon-align-justify"></span>
@@ -57,7 +60,7 @@
                 </pre>
             </div>
             <div class="col-xs-12 visible-xs text-center" style="padding:25px; font-size: 30px; margin:0 auto;">
-                    { Hello OrangePeels }
+                { Hello OrangePeels }
             </div>
         </div>
     </div>
@@ -65,7 +68,8 @@
         <blockquote>
             <p>
                 OrangePeels的0.1.0终于是上线了，我们会在这里展示出各种学习相关的资料文献，希望给你带来美好的一天
-            </p> <small>From code man <cite>blackdogmanchy@gmail.com</cite></small>
+            </p>
+            <small>From code man <cite>blackdogmanchy@gmail.com</cite></small>
         </blockquote>
     </div>
 </div>
@@ -73,4 +77,6 @@
     <p>Made by Blackogman. OrangePeels 2018</p>
 </div>
 </body>
+    <!--引入js库-->
+    <div th:include="model/importJs :: importJs"></div>
 </html>
