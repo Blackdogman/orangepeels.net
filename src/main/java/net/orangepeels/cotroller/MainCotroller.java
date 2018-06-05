@@ -17,14 +17,19 @@ public class MainCotroller {
     @GetMapping("/")
     public String WelcomeToWebsite(HttpServletRequest req, HttpServletResponse resp){
         Cookie[] cookies = req.getCookies();
+        System.out.println("新请求：" +req.getRequestedSessionId() );
         for (Cookie cok:
              cookies) {
-            if("users".equals(cok.getName())){
-                System.out.println(cok.getValue());
-            }
+            System.out.println("-----------------------------------");
+            System.out.println("cookies.name ----> " + cok.getName());
+            System.out.println("cookies.val ----> " + cok.getValue());
+            System.out.println("cookies.doMain ----> " + cok.getDomain());
+            System.out.println("cookies.path ----> " + cok.getPath());
+            System.out.println("cookies.comment ----> " + cok.getComment());
+            System.out.println("cookies.version ----> " + cok.getVersion());
+            System.out.println("cookies.secure ----> " + cok.getSecure());
+            System.out.println("cookies.maxAge ----> " + cok.getMaxAge());
         }
-        Cookie c = new Cookie("users", req.getSession().getId());
-        resp.addCookie(c);
         return "homePage";
     }
 
