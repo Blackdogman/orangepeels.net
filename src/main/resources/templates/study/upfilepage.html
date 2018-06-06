@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon"/>
+    <!--引入CSS库-->
+    <div th:include="model/importCss :: importCss"></div>
+</head>
+<body>
+    <div class="container well" id="file_form">
+        <div class="form-group">
+            <input type="file" class="form-control" id="file_input" enctype='multipart/form-data' name="file" >
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-info btn-block" id="up_btn">上传</button>
+        </div>
+    </div>
+</body>
+<!--引入js库-->
+<div th:include="model/importJs :: importJs"></div>
+<script>
+    $("#up_btn").on("click",function () {
+        alert("执行了?");
+        $.ajax({
+            url: "/upFile",
+            data: {
+                file: new FormData($("#file_input").val())
+            },
+            type: "POST",
+            success: function (req) {
+                
+            },
+            error: function () {
+                alert("请求失败");
+            }
+        });
+    });
+</script>
+</html>

@@ -15,8 +15,9 @@ import java.util.List;
 public class MainCotroller {
 
     @GetMapping("/")
-    public String WelcomeToWebsite(HttpServletRequest req, HttpServletResponse resp){
+    public String WelcomeToWebsite(HttpServletRequest req){
         Cookie[] cookies = req.getCookies();
+        System.out.println("+++++++++++++++++++++++++++++++++++++");
         System.out.println("新请求：" +req.getRequestedSessionId() );
         for (Cookie cok:
              cookies) {
@@ -33,13 +34,9 @@ public class MainCotroller {
         return "homePage";
     }
 
-    @RequestMapping("/test")
-    @ResponseBody
-    public List<String> getJSON(HttpServletRequest req){
-        List<String> list = new ArrayList<>();
-        list.add(req.getParameter("user_name"));
-        list.add(req.getParameter("user_pwd"));
-        return list;
+    @GetMapping("/upfilepage")
+    public String gotoUploadFile(){
+        return "study/upfilepage";
     }
 
 }
