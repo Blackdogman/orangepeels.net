@@ -7,8 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.*;
-import java.nio.Buffer;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 @RestController
 public class StudyController {
@@ -23,13 +24,8 @@ public class StudyController {
         System.out.println("file: " + file);
         System.out.println(file.getOriginalFilename());
         InputStream input = file.getInputStream();
-        InputStreamReader reader = new InputStreamReader(input);
-        BufferedReader br = new BufferedReader(reader);
-        String temp;
-        while((temp = br.readLine()) != null){
-            System.out.println(temp);
-        }
-        return "Hello";
+        String re = MarkDownTools.getHTML(input);
+        return re;
     }
 
     /**

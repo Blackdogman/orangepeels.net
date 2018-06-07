@@ -24,24 +24,30 @@ public class MarkDownTools {
      */
     public static String getHTML(File file) throws IOException {
         String strHTML;
-        strHTML = getFistLab(file);
+        InputStream input = new FileInputStream(file);
+        strHTML = getFistLab(input);
+        return strHTML;
+    }
+
+    public static String getHTML(InputStream input) throws IOException {
+        String strHTML;
+        strHTML = getFistLab(input);
         return strHTML;
     }
 
     /**
      * 先把markdown转换成HTML标签
      *
-     * @param file
+     * @param input 输入流
      * @return
      * @throws IOException
      */
-    private static String getFistLab(File file) throws IOException {
+    private static String getFistLab(InputStream input) throws IOException {
         StringBuilder toLab = new StringBuilder();
         String tag;
         boolean ulFlag = false;
         boolean olFlag = false;
         boolean codeFlag = false;
-        InputStream input = new FileInputStream(file);
         InputStreamReader reader = new InputStreamReader(input);
         BufferedReader br = new BufferedReader(reader); // markdown读取器
         String temp;
