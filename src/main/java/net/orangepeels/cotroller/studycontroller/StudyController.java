@@ -1,6 +1,6 @@
 package net.orangepeels.cotroller.studycontroller;
 
-import net.orangepeels.utils.MarkDown.MarkDownTools;
+import net.orangepeels.utils.MarkDownTools;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

@@ -1,4 +1,4 @@
-package net.orangepeels.utils.JSON;
+package net.orangepeels.utils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

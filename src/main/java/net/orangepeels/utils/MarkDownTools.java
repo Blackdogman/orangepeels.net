@@ -1,4 +1,4 @@
-package net.orangepeels.utils.MarkDown;
+package net.orangepeels.utils;
 
 import org.junit.Test;
 
@@ -8,7 +8,7 @@ public class MarkDownTools {
 
     @Test
     public void testThisShit() {
-        File file = new File("/Users/Blackdogman/Desktop/markdown.md");
+        File file = new File("/Users/Blackdogman/Desktop/5月3日JAVA培训笔记.md");
         try {
             getHTML(file);
         } catch (IOException e) {
@@ -39,6 +39,7 @@ public class MarkDownTools {
         StringBuilder toLab = new StringBuilder();
         String tag;
         boolean ulFlag = false;
+        boolean olFlag = false;
         boolean codeFlag = false;
         InputStream input = new FileInputStream(file);
         InputStreamReader reader = new InputStreamReader(input);
@@ -57,6 +58,15 @@ public class MarkDownTools {
                 toLab.append("</ul>\r\n");
                 ulFlag = false;
             }
+            //解决<ol><li>问题
+            if(MathTools.isNumber(tag.toCharArray()[0]) && !olFlag){
+                toLab.append("<ol>\r\n");
+                olFlag = true;
+            }
+            if(!MathTools.isNumber(tag.toCharArray()[0]) && olFlag){
+                toLab.append("</ol>\r\n");
+                olFlag = false;
+            }
             //解决<pre><code>标签问题
             if ("`".equals(tag) && !codeFlag) {
                 if ("```".equals(temp.substring(0, 3))) {
@@ -72,6 +82,7 @@ public class MarkDownTools {
                     continue;
                 }
             }
+
             //添加对应的标签
             toLab.append(getHtmlTag(temp, tag));
         }
@@ -81,7 +92,6 @@ public class MarkDownTools {
         if (codeFlag) { //如果到末尾了标签未结束，加上结束标签
             toLab.append("</code>\r\n</pre>\r\n");
         }
-        System.out.println(toLab);
         return toLab.toString();
     }
 
@@ -102,7 +112,12 @@ public class MarkDownTools {
                 toLab.append(liTag(temp));
                 break;
             default:
-                toLab.append(codeTag(temp));
+                if(MathTools.isNumber(tag.toCharArray()[0])){
+                    toLab.append(liTag(temp));
+                }else {
+                    toLab.append(codeTag(temp));
+                }
+
         }
         return toLab.toString();
     }
@@ -113,7 +128,6 @@ public class MarkDownTools {
         char[] charArray = temp.toCharArray();
         for (char item:
              charArray) {
-//            System.out.println(item);
             if('<' == item){
                 toLab.append("&lt;");
                 continue;
@@ -128,7 +142,7 @@ public class MarkDownTools {
         return toLab.toString();
     }
 
-    //对应无序列表
+    //对应有序无序列表
     private static String liTag(String temp) {
         String tab = "";  // 组合的标签
         String start, end; // 记录标签头与标签尾
