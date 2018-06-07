@@ -2,24 +2,34 @@ package net.orangepeels.cotroller.studycontroller;
 
 import net.orangepeels.utils.MarkDownTools;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.nio.Buffer;
 
 @RestController
 public class StudyController {
 
     /**
      * 文件上传
-     * @param req
+     * @param file 对应的上传文件
      * @// TODO: 2018/6/7 并没有完成，不知道该怎么做
      */
     @RequestMapping("/upFile")
-    public void upFile(HttpServletRequest req){
-        String file = req.getParameter("file");
+    public String upFile(@RequestParam("file") MultipartFile file) throws IOException {
         System.out.println("file: " + file);
+        System.out.println(file.getOriginalFilename());
+        InputStream input = file.getInputStream();
+        InputStreamReader reader = new InputStreamReader(input);
+        BufferedReader br = new BufferedReader(reader);
+        String temp;
+        while((temp = br.readLine()) != null){
+            System.out.println(temp);
+        }
+        return "Hello";
     }
 
     /**
