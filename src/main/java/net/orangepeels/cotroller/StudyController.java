@@ -1,18 +1,26 @@
-package net.orangepeels.cotroller.studycontroller;
+package net.orangepeels.cotroller;
 
+import net.orangepeels.dao.BlogMarkDownDao;
+import net.orangepeels.model.BlogMarkDown;
+import net.orangepeels.service.BlogMarkDownService;
 import net.orangepeels.utils.MarkDownTools;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.util.Date;
 
 @RestController
 public class StudyController {
+
+    @Autowired
+    private BlogMarkDownDao dao;
+
+    public StudyController() {
+    }
 
     /**
      * 文件上传
@@ -20,12 +28,19 @@ public class StudyController {
      * @// TODO: 2018/6/7 并没有完成，不知道该怎么做
      */
     @RequestMapping("/upFile")
-    public String upFile(@RequestParam("file") MultipartFile file) throws IOException {
-        System.out.println("file: " + file);
-        System.out.println(file.getOriginalFilename());
+    public int upFile(MultipartFile file) throws IOException {
+        String fileName = file.getOriginalFilename();
+        StringBuilder content = new StringBuilder();
         InputStream input = file.getInputStream();
-        String re = MarkDownTools.getHTML(input);
-        return re;
+        InputStreamReader reader = new InputStreamReader(input);
+        BufferedReader br = new BufferedReader(reader);
+        String temp;
+        while((temp = br.readLine()) != null){
+            content.append(temp).append("\r\n");
+        }
+        BlogMarkDown blog = new BlogMarkDown(fileName, content.toString());
+        int result = dao.insert(blog.getFileName(), blog.getContent());
+        return result;
     }
 
     /**
