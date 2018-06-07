@@ -14,17 +14,19 @@ public class MainCotroller {
         Cookie[] cookies = req.getCookies();
         System.out.println("+++++++++++++++++++++++++++++++++++++");
         System.out.println("新请求：" +req.getRequestedSessionId() );
-        for (Cookie cok:
-             cookies) {
-            System.out.println("-----------------------------------");
-            System.out.println("cookies.name ----> " + cok.getName());
-            System.out.println("cookies.val ----> " + cok.getValue());
-            System.out.println("cookies.doMain ----> " + cok.getDomain());
-            System.out.println("cookies.path ----> " + cok.getPath());
-            System.out.println("cookies.comment ----> " + cok.getComment());
-            System.out.println("cookies.version ----> " + cok.getVersion());
-            System.out.println("cookies.secure ----> " + cok.getSecure());
-            System.out.println("cookies.maxAge ----> " + cok.getMaxAge());
+        if(cookies != null){
+            for (Cookie cok:
+                    cookies) {
+                System.out.println("-----------------------------------");
+                System.out.println("cookies.name ----> " + cok.getName());
+                System.out.println("cookies.val ----> " + cok.getValue());
+                System.out.println("cookies.doMain ----> " + cok.getDomain());
+                System.out.println("cookies.path ----> " + cok.getPath());
+                System.out.println("cookies.comment ----> " + cok.getComment());
+                System.out.println("cookies.version ----> " + cok.getVersion());
+                System.out.println("cookies.secure ----> " + cok.getSecure());
+                System.out.println("cookies.maxAge ----> " + cok.getMaxAge());
+            }
         }
         return "homePage";
     }
