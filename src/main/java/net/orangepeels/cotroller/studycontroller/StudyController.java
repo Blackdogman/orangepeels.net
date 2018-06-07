@@ -27,9 +27,11 @@ public class StudyController {
      * @return 返回一个HTML代码
      */
     @RequestMapping("/getHTMLFromMD")
-    public String getHTMLFromMD(){
+    public String getHTMLFromMD(HttpServletRequest req){
+        String path = req.getParameter("file");
+        System.out.println(path);
         String reStr = "";
-        File file = new File("/Users/Blackdogman/Desktop/markdown.md");
+        File file = new File(path);
         try {
             reStr = MarkDownTools.getHTML(file);
         } catch (IOException e) {

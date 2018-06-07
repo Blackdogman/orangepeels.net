@@ -16,9 +16,11 @@
             <button type="submit" class="btn btn-info btn-block" id="up_btn">上传</button>
         </div>
     </div>
-    <div class="container" id="append_div">
 
-        <button class="btn btn-success" id="append_btn">添加！</button>
+    <div class="container" id="append_div">
+        <input type="text" name="mark_file" id="mark_file">
+        <button class="btn btn-success" id="append_btn">解析MarkDown！</button>
+        <div id="markdownContent"></div>
     </div>
 </body>
 <!--引入js库-->
@@ -26,11 +28,19 @@
 <script>
     // 点击把markdown解析成html并放入页面
     $("#append_btn").on("click", function () {
+        var file = $("#mark_file").val();
         $.ajax({
             url: "/getHTMLFromMD",
-            type: "GET",
+            type: "POST",
+            data: {
+                file: file
+            },
             success: function (req) {
-                $("#append_div").append($(req));
+                $("#append_div #markdownContent").empty();
+                $("#append_div #markdownContent").append($(req));
+                $("#append_div #markdownContent pre").addClass("prettyprint");
+                $("#append_div #markdownContent pre").css({"border":"none"});
+                prettyPrint();
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log("jqXHR:" + jqXHR.statusText + "\ntextStatus:" + textStatus + "\nerrorThrown:" + errorThrown);
@@ -48,7 +58,7 @@
             },
             type: "POST",
             success: function (req) {
-                
+
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log("jqXHR:" + jqXHR.statusText + "\ntextStatus:" + textStatus + "\nerrorThrown:" + errorThrown);
