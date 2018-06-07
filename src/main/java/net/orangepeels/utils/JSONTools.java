@@ -27,6 +27,21 @@ public class JSONTools {
     }
 
     /**
+     * 用于来选择分支遍历
+     */
+    private static <T> String branch(T item) {
+        String reStr;
+        if (Collection.class.isAssignableFrom(item.getClass())) {
+            reStr = getJSON((Collection) item);
+        } else if (Map.class.isAssignableFrom(item.getClass())) {
+            reStr = getJSON((Map) item);
+        } else {
+            reStr = getJSON(item);
+        }
+        return reStr;
+    }
+
+    /**
      * 把Collection接口下面那几个哥们儿转化为JSON格式
      */
     private static <T> String getJSON(Collection<T> list) {
@@ -96,20 +111,4 @@ public class JSONTools {
         }
         return reStr.toString();
     }
-
-    /**
-     * 用于来选择分支遍历
-     */
-    private static <T> String branch(T item) {
-        String reStr;
-        if (Collection.class.isAssignableFrom(item.getClass())) {
-            reStr = getJSON((Collection) item);
-        } else if (Map.class.isAssignableFrom(item.getClass())) {
-            reStr = getJSON((Map) item);
-        } else {
-            reStr = getJSON(item);
-        }
-        return reStr;
-    }
-
 }
