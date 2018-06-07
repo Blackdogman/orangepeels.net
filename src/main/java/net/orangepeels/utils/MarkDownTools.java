@@ -106,13 +106,13 @@ public class MarkDownTools {
         StringBuilder toLab = new StringBuilder();
         switch (tag) {
             case "#":
-                toLab.append(hTag(temp));
+                toLab.append(hTag(temp)); // 转换 h 标签
                 break;
             case "-":
-                toLab.append(liTag(temp));
+                toLab.append(liTag(temp)); // 转换 ul->li 标签
                 break;
             default:
-                if(MathTools.isNumber(tag.toCharArray()[0])){
+                if(MathTools.isNumber(tag.toCharArray()[0])){ // 转换 ol->li 标签
                     toLab.append(liTag(temp));
                 }else {
                     toLab.append(codeTag(temp));
@@ -142,7 +142,7 @@ public class MarkDownTools {
         return toLab.toString();
     }
 
-    //对应有序无序列表
+    //对应li列表
     private static String liTag(String temp) {
         String tab = "";  // 组合的标签
         String start, end; // 记录标签头与标签尾
