@@ -6,7 +6,7 @@ public class BlogMarkDown {
     private int id;
     private Date upDate;
     private String fileName;
-    private String content;
+    protected String content;
     private int flag;
 
     public BlogMarkDown() {
@@ -29,7 +29,8 @@ public class BlogMarkDown {
                 "id=" + id +
                 ", upDate=" + upDate +
                 ", fileName='" + fileName + '\'' +
-                ", content='" + content + '\'' +
+                ", content=" + content +
+                ", flag=" + flag +
                 '}';
     }
 

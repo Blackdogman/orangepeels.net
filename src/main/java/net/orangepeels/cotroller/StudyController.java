@@ -36,7 +36,7 @@ public class StudyController {
         while((temp = br.readLine()) != null){
             content.append(temp).append("\r\n");
         }
-        BlogMarkDown blog = new BlogMarkDown(fileName, "hello World");
+        BlogMarkDown blog = new BlogMarkDown(fileName, content.toString());
         int reRow = service.saveMarkDown(blog);
         return reRow;
     }

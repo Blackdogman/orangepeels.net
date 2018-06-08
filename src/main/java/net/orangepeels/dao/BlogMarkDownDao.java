@@ -1,8 +1,10 @@
 package net.orangepeels.dao;
 
+import net.orangepeels.model.BlogMarkDown;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface BlogMarkDownDao {
@@ -11,4 +13,7 @@ public interface BlogMarkDownDao {
             @Param("file_name") String fileName,
             @Param("content") String content
     );
+
+    @Select("SELECT * FROM blog_markdown WHERE id = #{id}")
+    public BlogMarkDown select(@Param("id") int id);
 }
