@@ -6,7 +6,8 @@ public class BlogMarkDown {
     private int id;
     private Date upDate;
     private String fileName;
-    protected String content;
+    private String content;
+    private String md5Code;
     private int flag;
 
     public BlogMarkDown() {
@@ -17,21 +18,10 @@ public class BlogMarkDown {
         this.content = content;
     }
 
-    public BlogMarkDown(Date upDate, String fileName, String content) {
-        this.upDate = upDate;
+    public BlogMarkDown(String fileName, String content, String md5Code) {
         this.fileName = fileName;
         this.content = content;
-    }
-
-    @Override
-    public String toString() {
-        return "BlogMarkDown{" +
-                "id=" + id +
-                ", upDate=" + upDate +
-                ", fileName='" + fileName + '\'' +
-                ", content=" + content +
-                ", flag=" + flag +
-                '}';
+        this.md5Code = md5Code;
     }
 
     public int getId() {
@@ -72,5 +62,25 @@ public class BlogMarkDown {
 
     public void setFlag(int flag) {
         this.flag = flag;
+    }
+
+    public String getMd5Code() {
+        return md5Code;
+    }
+
+    public void setMd5Code(String md5Code) {
+        this.md5Code = md5Code;
+    }
+
+    @Override
+    public String toString() {
+        return "BlogMarkDown{" +
+                "id=" + id +
+                ", upDate=" + upDate +
+                ", fileName='" + fileName + '\'' +
+                ", content='" + content + '\'' +
+                ", md5Code='" + md5Code + '\'' +
+                ", flag=" + flag +
+                '}';
     }
 }

@@ -32,20 +32,15 @@ public class FileController {
         String fileName = file.getOriginalFilename();
         StringBuilder content = new StringBuilder();
         InputStream input = file.getInputStream();
-
-        input.read(item);
-        System.out.println("+++++++++++++++++++++++++");
-        String md5Code = EncryptTools.getMD5(item);
-        System.out.println(md5Code);
-        System.out.println("+++++++++++++++++++++++++");
-
         InputStreamReader reader = new InputStreamReader(input);
         BufferedReader br = new BufferedReader(reader);
         String temp;
         while((temp = br.readLine()) != null){
             content.append(temp).append("\r\n");
         }
-        BlogMarkDown blog = new BlogMarkDown(fileName, content.toString());
+        input.read(item);
+        String md5Code = EncryptTools.getMD5(item);
+        BlogMarkDown blog = new BlogMarkDown(fileName, content.toString(), md5Code);
         int reRow = service.saveMarkDown(blog);
         return reRow;
     }

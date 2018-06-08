@@ -17,6 +17,6 @@ public class BlogMarkDownService {
      * @return
      */
     public int saveMarkDown(BlogMarkDown blog){
-        return dao.insert(blog.getFileName(), blog.getContent());
+        return dao.insert(blog.getFileName(), blog.getContent(), blog.getMd5Code());
     }
 }
