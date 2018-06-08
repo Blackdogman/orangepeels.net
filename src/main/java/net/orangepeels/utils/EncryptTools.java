@@ -31,23 +31,4 @@ public class EncryptTools {
         String str = KEY + new String(key);
         return (new BASE64Encoder()).encodeBuffer(str.getBytes());
     }
-
-    @Test
-    public void test(){
-        String a = null;
-        String b = null;
-        try {
-            a = encryptBASE64("jwujdloaoxvcbcde".getBytes());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        System.out.println(a);
-        try {
-            b = new String(decryptBASE64(a));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        System.out.println(b);
-    }
-
 }
