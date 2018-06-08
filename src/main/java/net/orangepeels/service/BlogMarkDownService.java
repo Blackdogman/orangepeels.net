@@ -5,13 +5,6 @@ import net.orangepeels.model.BlogMarkDown;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.sql.Blob;
-import java.sql.SQLException;
-
 @Service
 public class BlogMarkDownService {
 
@@ -24,9 +17,6 @@ public class BlogMarkDownService {
      * @return
      */
     public int saveMarkDown(BlogMarkDown blog){
-        int result;
-        System.out.println(blog);
-        result = dao.insert(blog.getFileName(), blog.getContent());
-        return result;
+        return dao.insert(blog.getFileName(), blog.getContent());
     }
 }
