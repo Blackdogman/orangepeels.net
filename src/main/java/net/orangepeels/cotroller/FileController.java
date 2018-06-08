@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 
 @RestController
-public class StudyController {
+public class FileController {
 
     @Autowired
     private BlogMarkDownService service;
 
-    public StudyController() {
+    public FileController() {
     }
 
     /**
