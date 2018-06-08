@@ -1,5 +1,6 @@
 package net.orangepeels.utils;
 
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.junit.Test;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
@@ -8,6 +9,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.math.BigInteger;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class EncryptTools {
     private static final String KEY = "mother";
@@ -38,30 +40,31 @@ public class EncryptTools {
     }
 
     /**
-     * 得到文件的MD5编码
+     * 得到文件流的MD5码
      * @param file
      * @return
      */
-    public static String getFileMD5(File file) {
-        if (!file.isFile()) {
-            return null;
-        }
-        MessageDigest digest = null;
-        FileInputStream in = null;
-        byte buffer[] = new byte[1024];
-        int len;
+    public static String getMD5(byte[] file) {
+        StringBuffer sb = new StringBuffer();
         try {
-            digest = MessageDigest.getInstance("MD5");
-            in = new FileInputStream(file);
-            while ((len = in.read(buffer, 0, 1024)) != -1) {
-                digest.update(buffer, 0, len);
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(file);
+            byte b[] = md.digest();
+            int d;
+            for (int i = 0; i < b.length; i++) {
+                d = b[i];
+                if (d < 0) {
+                    d = b[i] & 0xff;
+                    // 与上一行效果等同
+                    // i += 256;
+                }
+                if (d < 16)
+                    sb.append("0");
+                sb.append(Integer.toHexString(d));
             }
-            in.close();
-        } catch (Exception e) {
+        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
-            return null;
         }
-        BigInteger bigInt = new BigInteger(1, digest.digest());
-        return bigInt.toString(16);
+        return sb.toString();
     }
 }

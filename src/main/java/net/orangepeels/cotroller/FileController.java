@@ -2,6 +2,7 @@ package net.orangepeels.cotroller;
 
 import net.orangepeels.model.BlogMarkDown;
 import net.orangepeels.service.BlogMarkDownService;
+import net.orangepeels.utils.EncryptTools;
 import net.orangepeels.utils.MarkDownTools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,9 +28,17 @@ public class FileController {
      */
     @RequestMapping("/upFile")
     public int upFile(MultipartFile file) throws IOException {
+        byte[] item = new byte[10000];
         String fileName = file.getOriginalFilename();
         StringBuilder content = new StringBuilder();
         InputStream input = file.getInputStream();
+
+        input.read(item);
+        System.out.println("+++++++++++++++++++++++++");
+        String md5Code = EncryptTools.getMD5(item);
+        System.out.println(md5Code);
+        System.out.println("+++++++++++++++++++++++++");
+
         InputStreamReader reader = new InputStreamReader(input);
         BufferedReader br = new BufferedReader(reader);
         String temp;
