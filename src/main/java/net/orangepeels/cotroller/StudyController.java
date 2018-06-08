@@ -2,7 +2,6 @@ package net.orangepeels.cotroller;
 
 import net.orangepeels.dao.BlogMarkDownDao;
 import net.orangepeels.model.BlogMarkDown;
-import net.orangepeels.service.BlogMarkDownService;
 import net.orangepeels.utils.MarkDownTools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +10,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
-import java.util.Date;
 
 @RestController
 public class StudyController {
@@ -39,8 +37,8 @@ public class StudyController {
             content.append(temp).append("\r\n");
         }
         BlogMarkDown blog = new BlogMarkDown(fileName, content.toString());
-        int result = dao.insert(blog.getFileName(), blog.getContent());
-        return result;
+        int reRow = dao.insert(blog.getFileName(), blog.getContent());
+        return reRow;
     }
 
     /**
