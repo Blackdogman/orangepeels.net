@@ -12,7 +12,7 @@ public class BlogMarkDownService {
     private BlogMarkDownDao dao;
 
     /**
-     * 该方法调用mybatis要报空指针异常 需要研究
+     * 存储一个markdown
      * @param blog
      * @return
      */
