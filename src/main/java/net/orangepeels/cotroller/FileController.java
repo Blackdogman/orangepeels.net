@@ -24,7 +24,6 @@ public class FileController {
     /**
      * 文件上传
      * @param file 对应的上传文件
-     * @// TODO: 2018/6/7 并没有完成，不知道该怎么做
      */
     @RequestMapping("/upFile")
     public int upFile(MultipartFile file) throws IOException {
