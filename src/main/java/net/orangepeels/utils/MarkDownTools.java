@@ -1,19 +1,11 @@
 package net.orangepeels.utils;
 
-import org.junit.Test;
-
 import java.io.*;
 
 public class MarkDownTools {
 
-    @Test
-    public void testThisShit() {
-        File file = new File("/Users/Blackdogman/Desktop/5月3日JAVA培训笔记.md");
-        try {
-            getHTML(file);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private MarkDownTools() {
+        // 私有构造方法，防止创建工具类实例
     }
 
     /**

@@ -2,6 +2,10 @@ package net.orangepeels.utils;
 
 public class MathTools {
 
+    private MathTools(){
+        // 私有构造方法，防止创造对应实例
+    }
+
     /**
      * 判断这个字符是否是数字
      * @param str 比对字符

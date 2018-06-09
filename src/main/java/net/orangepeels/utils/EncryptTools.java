@@ -1,18 +1,17 @@
 package net.orangepeels.utils;
 
-import org.apache.tomcat.util.http.fileupload.FileUtils;
-import org.junit.Test;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class EncryptTools {
     private static final String KEY = "mother";
+
+    private EncryptTools() {
+        //私有构造方法，防止创建工具类实例
+    }
 
     /**
      * BASE64解密,用于传递参数
