@@ -18,7 +18,7 @@
     </div>
     <div class="col-md-9 col-sm-8 col-xs-12">
         <div id="uploadDiv">
-            <form class="well hide" enctype="multipart/form-data" id="file_form">
+            <form id="file_form" class="well hide" enctype="multipart/form-data">
                 <div class="form-group">
                     <input type="file" id="file_input" name="file">
                 </div>
@@ -27,7 +27,7 @@
                 </div>
             </form>
 
-            <form class="well" id="append_div" enctype="multipart/form-data" target="hideFrame">
+            <form id="append_div" class="well"  enctype="multipart/form-data" target="hideFrame">
                 <div class="form-group">
                     <input type="file" name="file" id="mark_file">
                 </div>
@@ -48,25 +48,31 @@
     // 点击把markdown解析成html并放入页面
     //append_div
     $("#append_btn").on("click", function () {
-        var formData = new FormData($("#append_div")[0]);
-        $.ajax({
-            url: "/getHTMLFromMD",
-            type: "POST",
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function (req) {
-                $("#markdownContent").empty();
-                $("#markdownContent").append($(req));
-                $("#markdownContent pre").addClass("prettyprint");
-                $("#markdownContent pre").css({"border": "none"});
-                prettyPrint();
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.log("jqXHR:" + jqXHR.statusText + "\ntextStatus:" + textStatus + "\nerrorThrown:" + errorThrown);
-            }
-        })
+        var format = $("#mark_file").val();
+        format = format.substring(format.length-3, format.length);
+        if(format !== ".md"){
+            alert("您选择的文件不是markdown文件(.md)");
+        }else {
+            var formData = new FormData($("#append_div")[0]);
+            $.ajax({
+                url: "/getHTMLFromMD",
+                type: "POST",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (req) {
+                    $("#markdownContent").empty();
+                    $("#markdownContent").append($(req));
+                    $("#markdownContent pre").addClass("prettyprint");
+                    $("#markdownContent pre").css({"border": "none"});
+                    prettyPrint();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log("jqXHR:" + jqXHR.statusText + "\ntextStatus:" + textStatus + "\nerrorThrown:" + errorThrown);
+                }
+            })
+        }
     });
 
     //file_form
