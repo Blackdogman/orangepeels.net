@@ -88,6 +88,9 @@
         });
     });
 
+    /**
+     * 暂时针对的是markdown模块的按钮，后期期望能做成一个通用的方法
+     */
     $("#uploadBtn").on("click", function () {
         var text = $("#uploadBtn").attr("name");
         if($("#uploadDiv").is(":visible")){
