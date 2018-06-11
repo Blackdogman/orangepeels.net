@@ -30,17 +30,39 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <blockquote>
-            <p>
-                OrangePeels的0.1.0终于是上线了，我们会在这里展示出各种学习相关的资料文献，希望给你带来美好的一天
-            </p>
-            <small>From code man <cite>blackdogmanchy@gmail.com</cite></small>
-        </blockquote>
+
+    <div class="container" style="padding-top: 40px;">
+        <div class="col-md-4" style="min-height: 200px;">
+            <img src="/img/media/springboot.png" class="col-md-4 col-sm-4 col-xs-4" style="max-width: 150px;">
+            <div class="col-md-8 col-sm-8 col-xs-8">
+                <p>
+                    <strong>Spring Boot</strong> 是一个轻量级框架，可以完成基于 Spring 的应用程序的大部分配置工作。在本教程中，将学习如何使用 Spring Boot 的 starter、特性和可执行 JAR
+                    文件结构，快速创建能直接运行的基于 Spring 的应用程序。
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4" style="min-height: 200px;">
+            <img src="/img/media/bootstrap.png" class="col-md-4 col-sm-4 col-xs-4" style="max-width: 150px;">
+            <div class="col-md-8 col-sm-8 col-xs-8">
+                <p>
+                    <strong>Bootstrap</strong> 是美国Twitter公司的设计师Mark Otto和Jacob Thornton合作基于HTML、CSS、JavaScript 开发的简洁、直观、强悍的前端开发框架，使得 Web
+                    开发更加快捷。
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4" style="min-height: 200px;">
+            <img src="/img/media/mysql.png" class="col-md-4 col-sm-4 col-xs-4" style="max-width: 150px;">
+            <div class="col-md-8 col-sm-8 col-xs-8">
+                <p>
+                    <strong>MySQL</strong> 是最流行的关系型数据库管理系统，在WEB应用方面 MySQL 是最好的RDBMS(Relational Database Management
+                    System：关系数据库管理系统)应用软件之一。
+                </p>
+            </div>
+        </div>
     </div>
 </div>
 <div th:replace="model/footer :: footer"></div>
 </body>
-    <!--引入js库-->
-    <div th:replace="model/importJs :: importJs"></div>
+<!--引入js库-->
+<div th:replace="model/importJs :: importJs"></div>
 </html>
