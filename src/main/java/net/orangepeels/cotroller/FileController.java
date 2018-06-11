@@ -25,7 +25,7 @@ public class FileController {
      * 文件上传
      * @param file 对应的上传文件
      */
-    @RequestMapping("/upFile")
+    @RequestMapping("/uploadMarkDown")
     public int upFile(MultipartFile file) throws IOException {
         byte[] item = new byte[10000];
         String fileName = file.getOriginalFilename();
@@ -49,13 +49,11 @@ public class FileController {
      * @return 返回一个HTML代码
      */
     @RequestMapping("/getHTMLFromMD")
-    public String getHTMLFromMD(HttpServletRequest req){
-        String path = req.getParameter("file");
-        System.out.println(path);
+    public String getHTMLFromMD(MultipartFile file) throws IOException {
+        InputStream inputStream = file.getInputStream();
         String reStr = "";
-        File file = new File(path);
         try {
-            reStr = MarkDownTools.getHTML(file);
+            reStr = MarkDownTools.getHTML(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }

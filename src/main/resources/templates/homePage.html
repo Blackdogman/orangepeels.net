@@ -4,43 +4,10 @@
     <title>Welcome to OrangePeels</title>
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon"/>
     <!--引入CSS库-->
-    <div th:include="model/importCss :: importCss"></div>
-    <link rel="stylesheet" href="css/homePage.css"/>
+    <div th:replace="model/importCss :: importCss"></div>
 </head>
 <body>
-<nav class="navbar-fixed-top" id="top">
-    <div class="container">
-        <div class="col-sm-4 hidden-xs">
-            <a id="logo" href="/"><img src="img/L/orangepeelsLogo.png" alt="logo"/></a>
-        </div>
-        <div class="col-sm-8 hidden-xs bdm-top-right">
-            <ul>
-                <li><a href="/playground">Playground</a></li>
-                <li><a href="https://github.com/Blackdogman/orangepeels.net.git">Github</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Creator</a></li>
-            </ul>
-        </div>
-        <div class="col-xs-12 visible-xs bdm-top-right2">
-            <ul id="bdm-top-right2-ul" class="pull-right">
-                <li class="bdm-top-right2-li col-xs-5"><a href="#" id="sLogo"><img src="img/S/orangepeelsSmallLogo.png"
-                                                                                   width="30px;" height="30px;" alt=""></a>
-                </li>
-                <li class="bdm-top-right2-li dropdown col-xs-7">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <span class="glyphicon glyphicon-align-justify"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/playground">Playground</a></li>
-                        <li><a href="https://github.com/Blackdogman/orangepeels.net.git">Github</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Creator</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<div th:replace="model/header :: header"></div>
 
 <div id="content">
     <div class="bdm-faDiv">
@@ -72,10 +39,8 @@
         </blockquote>
     </div>
 </div>
-<div class="panel-footer" id="footer">
-    <p>Made by Blackogman. OrangePeels 2018</p>
-</div>
+<div th:replace="model/footer :: footer"></div>
 </body>
     <!--引入js库-->
-    <div th:include="model/importJs :: importJs"></div>
+    <div th:replace="model/importJs :: importJs"></div>
 </html>

@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <header th:fragment="importCss">
-    <!--引入logo-->
-    <!--<link rel="shortcut icon" href="img/S/favicon.png" type="image/x-icon">-->
     <!--启用bootstrap的设备响应式布局-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--引入BootStrap-->
-    <link rel="stylesheet" href="tools/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" th:href="@{tools/bootstrap/css/bootstrap.css}"/>
     <!--引入prettify代码着色器-->
-    <link rel="stylesheet" href="tools/prettify/prettify.min.css">
+    <link rel="stylesheet" th:href="@{tools/prettify/prettify.min.css}">
     <!--引入自己写的js与css-->
-    <link rel="stylesheet" href="css/base/orangepeels.css"/>
+    <link rel="stylesheet" th:href="@{css/base/orangepeels.css}"/>
 </header>

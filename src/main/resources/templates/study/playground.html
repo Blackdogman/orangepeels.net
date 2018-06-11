@@ -5,46 +5,62 @@
     <title>Title</title>
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon"/>
     <!--引入CSS库-->
-    <div th:include="model/importCss :: importCss"></div>
+    <div th:replace="model/importCss :: importCss"></div>
 </head>
 <body>
-    <form class="container well" enctype="multipart/form-data" id="file_form">
-        <div class="form-group">
-            <input type="file" class="form-control" id="file_input" name="file" >
-        </div>
-        <div class="form-group">
-            <button type="button" class="btn btn-info btn-block" id="up_btn">上传</button>
-        </div>
-    </form>
+<div th:replace="model/header :: header"></div>
 
-    <form class="container well" action="/upFile" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" id="servlet_file" />
-        <button type="submit" class="btn btn-success">上传</button>
-    </form>
-
-    <div class="container" id="append_div">
-        <input type="text" name="mark_file" id="mark_file" value="/Users/Blackdogman/Desktop/markdown.md">
-        <button class="btn btn-success" id="append_btn">解析MarkDown！</button>
-        <div id="markdownContent"></div>
+<div class="container" id="content" style="padding-top:75px;">
+    <div class="col-md-2 col-sm-2 col-xs-2">
+        <div class="container-fluid">
+            <div id="uploadBtn" name="上传组件" class="btn btn-success btn-block">收起上传组件</div>
+        </div>
     </div>
+    <div class="col-md-10 col-sm-10 col-xs-10">
+        <div id="uploadDiv">
+            <form class="well" enctype="multipart/form-data" id="file_form">
+                <div class="form-group">
+                    <input type="file" id="file_input" name="file">
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-info" id="up_btn">上传MarkDown!!</button>
+                </div>
+            </form>
+
+            <form class="well" id="append_div" enctype="multipart/form-data" target="hideFrame">
+                <div class="form-group">
+                    <input type="file" name="file" id="mark_file">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success" id="append_btn">解析MarkDown！</button>
+                </div>
+            </form>
+            <iframe name="hideFrame" style="display: none;"></iframe>
+            <div id="markdownContent"></div>
+        </div>
+    </div>
+</div>
+<div th:replace="model/footer :: footer"></div>
 </body>
 <!--引入js库-->
-<div th:include="model/importJs :: importJs"></div>
+<div th:replace="model/importJs :: importJs"></div>
 <script>
     // 点击把markdown解析成html并放入页面
+    //append_div
     $("#append_btn").on("click", function () {
-        var file = $("#mark_file").val();
+        var formData = new FormData($("#append_div")[0]);
         $.ajax({
             url: "/getHTMLFromMD",
             type: "POST",
-            data: {
-                file: file
-            },
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
             success: function (req) {
-                $("#append_div #markdownContent").empty();
-                $("#append_div #markdownContent").append($(req));
-                $("#append_div #markdownContent pre").addClass("prettyprint");
-                $("#append_div #markdownContent pre").css({"border":"none"});
+                $("#markdownContent").empty();
+                $("#markdownContent").append($(req));
+                $("#markdownContent pre").addClass("prettyprint");
+                $("#markdownContent pre").css({"border": "none"});
                 prettyPrint();
             },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -53,11 +69,11 @@
         })
     });
 
-
-    $("#up_btn").on("click",function () {
+    //file_form
+    $("#up_btn").on("click", function () {
         var formData = new FormData($("#file_form")[0]);
         $.ajax({
-            url: "/upFile",
+            url: "/uploadMarkDown",
             data: formData,
             type: "POST",
             cache: false,
@@ -71,5 +87,17 @@
             }
         });
     });
+
+    $("#uploadBtn").on("click", function () {
+        var text = $("#uploadBtn").attr("name");
+        if($("#uploadDiv").is(":visible")){
+            $("#uploadBtn").text("显示" + text);
+        }else {
+            $("#uploadBtn").text("隐藏" + text);
+        }
+        $("#uploadDiv").toggle(500);
+    });
+
+
 </script>
 </html>
