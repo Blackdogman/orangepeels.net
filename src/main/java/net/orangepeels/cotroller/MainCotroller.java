@@ -13,7 +13,7 @@ public class MainCotroller {
     }
 
     @GetMapping("/playground")
-    public String gotoUploadFile(){
+    public String goToPlayground(){
         return "study/playground";
     }
 

@@ -93,6 +93,10 @@ body {
     padding-top: 50px;
     padding-bottom: 100px;
 }
+#content_body {
+    padding-top: 75px;
+    padding-bottom: 100px;
+}
 
 #footer {
     width: 100%;

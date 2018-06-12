@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon"/>
+    <!--引入CSS库-->
+    <div th:replace="model/importCss :: importCss"></div>
+</head>
+<body>
+<div th:replace="model/header :: header"></div>
+
+<div id="content_body">
+    <div class="container">
+        <div class="col-md-3 col-sm-3 col-xs-3">
+            <div class="row" th:each="maps: ${#httpServletRequest.getAttribute('blogMap')}">
+                <p class="btn text-info" data-toggle="collapse" th:attr="data-target='#' + ${maps.key}" th:text="${maps.key}"></p>
+                <div th:id="${maps.key}" class="collapse">
+                    <ul>
+                        <li th:each="item: ${maps.value}">
+                            <a href="javascript:void(0);" th:onclick="'javascript:showMarkDown(\''+${item.id}+'\');'" th:text="${item.fileName}"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 col-sm-9 col-xs-9 well">Hi Internet</div>
+    </div>
+</div>
+
+
+
+
+
+<div th:replace="model/footer :: footer"></div>
+</body>
+<!--引入js库-->
+<div th:replace="model/importJs :: importJs"></div>
+<script>
+    //点击把对应ID的markdown转换成HTML放在右侧的框框中
+    function showMarkDown(id) {
+        alert(id);
+    }
+</script>
+</html>
