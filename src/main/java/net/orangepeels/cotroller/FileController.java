@@ -15,6 +15,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 @RestController
+@RequestMapping("/file")
 public class FileController {
 
     @Autowired

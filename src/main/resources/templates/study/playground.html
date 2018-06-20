@@ -19,6 +19,17 @@
     </div>
     <div class="col-md-9 col-sm-8 col-xs-12">
         <div id="uploadDiv">
+            <!--上传markdown按钮-->
+            <form id="upMarkDown_div" class="well"  enctype="multipart/form-data" target="hideFrame">
+                <div class="form-group">
+                    <input type="file" name="file" id="upMarkDown_file">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-danger" id="upload_btn">上传MarkDown！</button>
+                </div>
+            </form>
+
+            <!--在线解析markdown按钮-->
             <form id="append_div" class="well"  enctype="multipart/form-data" target="hideFrame">
                 <div class="form-group">
                     <input type="file" name="file" id="mark_file">
@@ -55,7 +66,7 @@
         }else {
             var formData = new FormData($("#append_div")[0]);
             $.ajax({
-                url: "/getHTMLFromMD",
+                url: "/file/getHTMLFromMD",
                 type: "POST",
                 data: formData,
                 cache: false,
@@ -74,6 +85,35 @@
             });
         }
     });
+
+    $("#upload_btn").on("click", function () {
+        var format = $("#upMarkDown_file").val();
+        format = format.substring(format.length-3, format.length);
+        if(format !== ".md"){
+            alert("您选择的文件不是markdown文件(.md)");
+        }else {
+            var formData = new FormData($("#upMarkDown_div")[0]);
+            $.ajax({
+                url: "/file/uploadMarkDown",
+                type: "POST",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (req) {
+                    $("#markdownContent").empty();
+                    $("#markdownContent").append($(req));
+                    $("#markdownContent pre").addClass("prettyprint");
+                    $("#markdownContent pre").css({"border": "none"});
+                    prettyPrint();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log("jqXHR:" + jqXHR.statusText + "\ntextStatus:" + textStatus + "\nerrorThrown:" + errorThrown);
+                }
+            });
+        }
+    });
+
 
 
     /**
