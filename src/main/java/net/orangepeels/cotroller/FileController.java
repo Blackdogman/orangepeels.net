@@ -2,7 +2,6 @@ package net.orangepeels.cotroller;
 
 import net.orangepeels.model.BlogMarkDown;
 import net.orangepeels.service.BlogMarkDownService;
-import net.orangepeels.utils.EncryptTools;
 import net.orangepeels.utils.MarkDownTools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +18,7 @@ import java.io.InputStreamReader;
 public class FileController {
 
     @Autowired
-    private BlogMarkDownService service;
+    private BlogMarkDownService blogMarkDownService;
 
     /**
      * 文件上传
@@ -38,9 +37,8 @@ public class FileController {
             content.append(temp).append("\r\n");
         }
         input.read(item);
-        String md5Code = EncryptTools.getMD5(item);
-        BlogMarkDown blog = new BlogMarkDown(fileName, content.toString(), md5Code);
-        int reRow = service.saveMarkDown(blog);
+        BlogMarkDown blog = new BlogMarkDown(fileName, content.toString());
+        int reRow = blogMarkDownService.saveMarkDown(blog);
         return reRow;
     }
 
@@ -58,5 +56,19 @@ public class FileController {
             e.printStackTrace();
         }
         return reStr;
+    }
+
+    /**
+     * 从数据库获得markdown，并转换为html
+     * @param markdownId markdown的id
+     * @return html代码
+     * @throws IOException
+     */
+    @RequestMapping("/getHTMLFromDBMD")
+    public String getHTMLFromDBMD(String markdownId) throws IOException {
+        String markdownText = blogMarkDownService.getMarkDownByMarkDownId(markdownId);
+        String[] textList = markdownText.split("\r\n");
+        String htmlText = MarkDownTools.getHTMl(textList);
+        return htmlText;
     }
 }

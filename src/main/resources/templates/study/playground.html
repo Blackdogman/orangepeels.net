@@ -100,12 +100,8 @@
                 cache: false,
                 contentType: false,
                 processData: false,
-                success: function (req) {
-                    $("#markdownContent").empty();
-                    $("#markdownContent").append($(req));
-                    $("#markdownContent pre").addClass("prettyprint");
-                    $("#markdownContent pre").css({"border": "none"});
-                    prettyPrint();
+                success: function () {
+                    alert("上传成功");
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log("jqXHR:" + jqXHR.statusText + "\ntextStatus:" + textStatus + "\nerrorThrown:" + errorThrown);

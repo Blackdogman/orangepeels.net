@@ -10,6 +10,7 @@ public class MarkDownTools {
 
     /**
      * 工具类唯一的public入口方法
+     *
      * @param file markdown文件
      * @return html代码
      * @throws IOException
@@ -24,6 +25,12 @@ public class MarkDownTools {
     public static String getHTML(InputStream input) throws IOException {
         String strHTML;
         strHTML = getFistLab(input);
+        return strHTML;
+    }
+
+    public static String getHTMl(String[] textList) throws IOException {
+        String strHTML;
+        strHTML = getFistLab(textList);
         return strHTML;
     }
 
@@ -44,7 +51,7 @@ public class MarkDownTools {
         BufferedReader br = new BufferedReader(reader); // markdown读取器
         String temp;
         while ((temp = br.readLine()) != null) {
-            if(temp.length() < 1)
+            if (temp.length() < 1)
                 continue;
             tag = temp.substring(0, 1);
             //解决ul标签的问题
@@ -57,11 +64,11 @@ public class MarkDownTools {
                 ulFlag = false;
             }
             //解决<ol><li>问题
-            if(MathTools.isNumber(tag.toCharArray()[0]) && !olFlag){
+            if (MathTools.isNumber(tag.toCharArray()[0]) && !olFlag) {
                 toLab.append("<ol>\r\n");
                 olFlag = true;
             }
-            if(!MathTools.isNumber(tag.toCharArray()[0]) && olFlag){
+            if (!MathTools.isNumber(tag.toCharArray()[0]) && olFlag) {
                 toLab.append("</ol>\r\n");
                 olFlag = false;
             }
@@ -80,7 +87,61 @@ public class MarkDownTools {
                     continue;
                 }
             }
+            //添加对应的标签
+            toLab.append(getHtmlTag(temp, tag));
+        }
+        if (ulFlag) { //如果到末尾了标签未结束，加上结束标签
+            toLab.append("</ul>\r\n");
+        }
+        if (codeFlag) { //如果到末尾了标签未结束，加上结束标签
+            toLab.append("</code>\r\n</pre>\r\n");
+        }
+        return toLab.toString();
+    }
 
+    private static String getFistLab(String[] input) throws IOException {
+        StringBuilder toLab = new StringBuilder();
+        String tag;
+        boolean ulFlag = false;
+        boolean olFlag = false;
+        boolean codeFlag = false;
+        for (String temp : input) {
+            if (temp.length() < 1)
+                continue;
+            tag = temp.substring(0, 1);
+            //解决ul标签的问题
+            if ("-".equals(tag) && !ulFlag) {
+                toLab.append("<ul>\r\n");
+                ulFlag = true;
+            }
+            if (!"-".equals(tag) && ulFlag) {
+                toLab.append("</ul>\r\n");
+                ulFlag = false;
+            }
+            //解决<ol><li>问题
+            if (MathTools.isNumber(tag.toCharArray()[0]) && !olFlag) {
+                toLab.append("<ol>\r\n");
+                olFlag = true;
+            }
+            if (!MathTools.isNumber(tag.toCharArray()[0]) && olFlag) {
+                toLab.append("</ol>\r\n");
+                olFlag = false;
+            }
+            //解决<pre><code>标签问题
+            if ("`".equals(tag) && !codeFlag) {
+                if ("```".equals(temp.substring(0, 3))) {
+                    toLab.append("<pre>\r\n<code>\r\n");
+                    codeFlag = true;
+                    continue;
+                }
+            }
+            if ("`".equals(tag) && codeFlag) {
+                if ("```".equals(temp.substring(0, 3))) {
+                    toLab.append("</code>\r\n</pre>\r\n");
+                    codeFlag = false;
+                    continue;
+                }
+            }
             //添加对应的标签
             toLab.append(getHtmlTag(temp, tag));
         }
@@ -110,9 +171,9 @@ public class MarkDownTools {
                 toLab.append(liTag(temp)); // 转换 ul->li 标签
                 break;
             default:
-                if(MathTools.isNumber(tag.toCharArray()[0])){ // 转换 ol->li 标签
+                if (MathTools.isNumber(tag.toCharArray()[0])) { // 转换 ol->li 标签
                     toLab.append(liTag(temp));
-                }else {
+                } else {
                     toLab.append(codeTag(temp));
                 }
 
@@ -121,16 +182,16 @@ public class MarkDownTools {
     }
 
     //处理code标签中的特殊字符比如"<"  ">"
-    private static String codeTag(String temp){
+    private static String codeTag(String temp) {
         StringBuilder toLab = new StringBuilder();
         char[] charArray = temp.toCharArray();
-        for (char item:
-             charArray) {
-            if('<' == item){
+        for (char item :
+                charArray) {
+            if ('<' == item) {
                 toLab.append("&lt;");
                 continue;
             }
-            if('>' == item){
+            if ('>' == item) {
                 toLab.append("&gt;");
                 continue;
             }

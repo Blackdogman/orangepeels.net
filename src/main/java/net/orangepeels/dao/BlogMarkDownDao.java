@@ -18,7 +18,7 @@ public interface BlogMarkDownDao {
     );
 
     @Select("SELECT * FROM blog_markdown WHERE id = #{id}")
-    public BlogMarkDown select(@Param("id") int id);
+    public BlogMarkDown select(@Param("id") String id);
 
     @Select("SELECT * FROM blog_markdown WHERE 1=1")
     public List<BlogMarkDown> selectAll();

@@ -37,33 +37,4 @@ public class EncryptTools {
         String str = KEY + new String(key);
         return (new BASE64Encoder()).encodeBuffer(str.getBytes());
     }
-
-    /**
-     * 得到文件流的MD5码
-     * @param file
-     * @return
-     */
-    public static String getMD5(byte[] file) {
-        StringBuffer sb = new StringBuffer();
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(file);
-            byte b[] = md.digest();
-            int d;
-            for (int i = 0; i < b.length; i++) {
-                d = b[i];
-                if (d < 0) {
-                    d = b[i] & 0xff;
-                    // 与上一行效果等同
-                    // i += 256;
-                }
-                if (d < 16)
-                    sb.append("0");
-                sb.append(Integer.toHexString(d));
-            }
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        return sb.toString();
-    }
 }
