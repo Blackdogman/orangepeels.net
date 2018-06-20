@@ -13,11 +13,11 @@
 <div id="content_body">
     <div class="container">
         <div class="col-md-3 col-sm-3 col-xs-3">
-            <div class="row" th:each="maps: ${#httpServletRequest.getAttribute('blogMap')}">
-                <p class="btn text-info" data-toggle="collapse" th:attr="data-target='#' + ${maps.key}" th:text="${maps.key}"></p>
-                <div th:id="${maps.key}" class="collapse">
+            <div class="row" th:each="blog: ${#httpServletRequest.getAttribute('blogMap')}">
+                <p class="btn text-info" data-toggle="collapse" th:attr="data-target='#' + ${blog.key}" th:text="${blog.key}"></p>
+                <div th:id="${blog.key}" class="collapse">
                     <ul>
-                        <li th:each="item: ${maps.value}">
+                        <li th:each="item: ${blog.value}">
                             <a href="javascript:void(0);" th:onclick="'javascript:showMarkDown(\''+${item.id}+'\');'" th:text="${item.fileName}"></a>
                         </li>
                     </ul>

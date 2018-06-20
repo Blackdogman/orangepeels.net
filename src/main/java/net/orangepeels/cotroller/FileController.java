@@ -21,9 +21,6 @@ public class FileController {
     @Autowired
     private BlogMarkDownService service;
 
-    public FileController() {
-    }
-
     /**
      * 文件上传
      * @param file 对应的上传文件

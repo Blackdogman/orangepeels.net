@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class MainCotroller {
+public class MainController {
     @GetMapping("/")
-    public String WelcomeToWebsite(HttpServletRequest req){
+    public String WelcomeToWebsite(){
         return "homePage";
     }
 

@@ -4,6 +4,7 @@ import net.orangepeels.model.BlogMarkDown;
 import net.orangepeels.service.BlogMarkDownService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,9 +18,9 @@ public class BlogController {
     private BlogMarkDownService service;
 
     @RequestMapping("/blogUi.do")
-    public String goToBlogPage(HttpServletRequest req){
+    public String goToBlogPage(Model model){
         TreeMap<Integer, List<BlogMarkDown>> blogMap = service.getAllBlogMarkDown();
-        req.setAttribute("blogMap", blogMap.descendingMap());
+        model.addAttribute("blogMap", blogMap.descendingMap());
         return "blog/blogHome";
     }
 }
