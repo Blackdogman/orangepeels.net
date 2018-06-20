@@ -20,6 +20,6 @@ public class BlogController {
     public String goToBlogPage(HttpServletRequest req){
         TreeMap<Integer, List<BlogMarkDown>> blogMap = service.getAllBlogMarkDown();
         req.setAttribute("blogMap", blogMap.descendingMap());
-        return "/blog/blogHome";
+        return "blog/blogHome";
     }
 }
