@@ -1,5 +1,6 @@
 package net.orangepeels.cotroller;
 
+import net.orangepeels.cotroller.frame.BaseController;
 import net.orangepeels.model.BlogMarkDown;
 import net.orangepeels.service.BlogMarkDownService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +13,11 @@ import java.util.TreeMap;
 
 @Controller
 @RequestMapping("/blog")
-public class BlogController {
-    @Autowired
-    private BlogMarkDownService service;
+public class BlogController extends BaseController {
 
     @RequestMapping("/blogUi.do")
     public String goToBlogPage(Model model){
-        TreeMap<Integer, List<BlogMarkDown>> blogMap = service.getAllBlogMarkDown();
+        TreeMap<Integer, List<BlogMarkDown>> blogMap = blogMarkDownService.getAllBlogMarkDown();
         model.addAttribute("blogMap", blogMap.descendingMap());
         return "blog/blogHome";
     }

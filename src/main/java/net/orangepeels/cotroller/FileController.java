@@ -1,5 +1,6 @@
 package net.orangepeels.cotroller;
 
+import net.orangepeels.cotroller.frame.BaseController;
 import net.orangepeels.model.BlogMarkDown;
 import net.orangepeels.service.BlogMarkDownService;
 import net.orangepeels.utils.MarkDownTools;
@@ -15,13 +16,10 @@ import java.io.InputStreamReader;
 
 @RestController
 @RequestMapping("/file")
-public class FileController {
-
-    @Autowired
-    private BlogMarkDownService blogMarkDownService;
-
+public class FileController extends BaseController {
     /**
      * 文件上传
+     *
      * @param file 对应的上传文件
      */
     @RequestMapping("/uploadMarkDown")
@@ -33,7 +31,7 @@ public class FileController {
         InputStreamReader reader = new InputStreamReader(input);
         BufferedReader br = new BufferedReader(reader);
         String temp;
-        while((temp = br.readLine()) != null){
+        while ((temp = br.readLine()) != null) {
             content.append(temp).append("\r\n");
         }
         input.read(item);
@@ -44,6 +42,7 @@ public class FileController {
 
     /**
      * 把markdown转换成HTML代码返回
+     *
      * @return 返回一个HTML代码
      */
     @RequestMapping("/getHTMLFromMD")
@@ -60,6 +59,7 @@ public class FileController {
 
     /**
      * 从数据库获得markdown，并转换为html
+     *
      * @param markdownId markdown的id
      * @return html代码
      * @throws IOException
