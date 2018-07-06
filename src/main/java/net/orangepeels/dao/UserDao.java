@@ -9,5 +9,5 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface UserDao {
     @Select("SELECT * FROM users WHERE id=#{id}")
-    public User selectUserById(@Param("id") Integer id);
+    User selectUserById(@Param("id") Integer id);
 }

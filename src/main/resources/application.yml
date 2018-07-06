@@ -26,3 +26,4 @@ mybatis:
     map-underscore-to-camel-case: true
     use-column-label: true
   type-aliases-package: net.orangepeels.model
+  mapper-locations: classpath:/mapper/*.xml
