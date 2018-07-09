@@ -2,8 +2,6 @@ package net.orangepeels.cotroller;
 
 import net.orangepeels.cotroller.frame.BaseController;
 import net.orangepeels.model.BlogMarkDown;
-import net.orangepeels.service.BlogMarkDownService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
