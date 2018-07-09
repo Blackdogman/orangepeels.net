@@ -5,6 +5,7 @@ import net.orangepeels.model.BlogMarkDown;
 import net.orangepeels.service.BlogMarkDownService;
 import net.orangepeels.utils.DateTools;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;

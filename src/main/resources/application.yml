@@ -21,6 +21,8 @@ spring:
   mvc:
     favicon:
       enabled: false
+  aop:
+    auto: true
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
