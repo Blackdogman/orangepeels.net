@@ -33,10 +33,17 @@ public class WebLogAspect {
         sb.append("\r\n");
         sb.append("访问地址: " + request.getRequestURI());
         sb.append("\r\n\r\n");
+        String path = System.getProperty("user.dir");
         //得到项目发布路径
         //String path = Class.class.getClass().getResource("/").getPath();
         String yMd = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-        File file = new File("~/" + "log/log"+yMd+".txt");
+        File file = new File(path + "/log-Orangepeels/log"+yMd+".txt");
+        if(!file.getParentFile().getParentFile().getParentFile().exists()){
+            file.getParentFile().getParentFile().getParentFile().mkdir();
+        }
+        if(!file.getParentFile().getParentFile().exists()){
+            file.getParentFile().getParentFile().mkdir();
+        }
         if (!file.getParentFile().exists()) {
             file.getParentFile().mkdir();
         }
