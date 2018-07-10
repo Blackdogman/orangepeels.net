@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class UrlController extends BaseController {
-
-
     @GetMapping("/")
     public String WelcomeToWebsite(){
         return "homePage";
@@ -21,5 +19,4 @@ public class UrlController extends BaseController {
     public String goToPlayground(){
         return "study/playground";
     }
-
 }
