@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class MainController extends BaseController {
+public class UrlController extends BaseController {
 
 
     @GetMapping("/")
