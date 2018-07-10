@@ -19,11 +19,4 @@ public class UrlController extends BaseController {
     public String goToPlayground(){
         return "study/playground";
     }
-
-    @GetMapping("/test")
-    public String test(){
-        System.out.println("test");
-        System.out.println("hello");
-        return "homePage";
-    }
 }
