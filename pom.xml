@@ -80,6 +80,13 @@
             <artifactId>mail</artifactId>
             <version>1.4</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.maxmind.geoip2/geoip2 -->
+        <dependency>
+            <groupId>com.maxmind.geoip2</groupId>
+            <artifactId>geoip2</artifactId>
+            <version>2.12.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
