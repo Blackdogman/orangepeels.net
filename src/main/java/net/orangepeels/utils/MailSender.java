@@ -1,8 +1,11 @@
 package net.orangepeels.utils;
 
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
 import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import javax.mail.internet.*;
+import java.io.File;
 import java.util.Properties;
 
 /**
@@ -14,11 +17,9 @@ public class MailSender implements Runnable {
     private static final String SMTP_KEY = "bW90aGVyand1amRsb2FveHZjYmNkZQ==";
 
     private String toAddress;
-    private String fromAddress;
-    private String smtpHost;
-
     private String subject;
     private Object content;
+    private File mailFile;
 
     @Override
     public void run() {
@@ -30,7 +31,7 @@ public class MailSender implements Runnable {
      */
     public void send() {
         Properties properties = System.getProperties();
-        properties.setProperty("mail.smtp.host", this.getStmpHost());
+        properties.setProperty("mail.smtp.host", SMTP_HOST);
         properties.put("mail.smtp.auth", "true");
         try {
             String key = new String(EncryptTools.decryptBASE64(SMTP_KEY));
@@ -42,29 +43,45 @@ public class MailSender implements Runnable {
             // 创建默认的 MimeMessage 对象
             MimeMessage message = new MimeMessage(session);
             // Set From: 头部头字段
-            message.setFrom(new InternetAddress(this.fromAddress));
+            message.setFrom(new InternetAddress(this.FROM_ADDRESS));
             // Set To: 头部头字段
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(this.toAddress));
             // Set Subject: 头部头字段
             message.setSubject(this.subject);
             // 设置消息体
-            message.setContent(this.content, "text/html;charset=utf-8");
+            Multipart multipart = new MimeMultipart();
+            //邮件正文
+            if (mailFile != null) {
+                //邮件附件
+                BodyPart contentPart = new MimeBodyPart();
+                contentPart.setContent(this.content, "text/html;charset=utf-8");
+                multipart.addBodyPart(contentPart);
+                BodyPart attachmentPart = new MimeBodyPart();
+                DataSource source = new FileDataSource(mailFile);
+                attachmentPart.setDataHandler(new DataHandler(source));
+                //避免中文乱码的处理
+                attachmentPart.setFileName(MimeUtility.encodeWord(mailFile.getName()));
+                multipart.addBodyPart(attachmentPart);
+                message.setContent(multipart);
+            } else {
+                message.setContent(this.content, "text/html;charset=utf-8");
+            }
             // 发送消息
             Transport.send(message);
-        } catch (MessagingException mex) {
-            mex.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
-
-    public MailSender(String toAddress, String subject, Object content) {
-        this.fromAddress = FROM_ADDRESS;
-        this.smtpHost = SMTP_HOST;
-        this.toAddress = toAddress;
-        this.subject = subject;
-        this.content = content;
+    @Override
+    public String toString() {
+        return "MailSender{" +
+                "toAddress='" + toAddress + '\'' +
+                ", subject='" + subject + '\'' +
+                ", content=" + content +
+                ", mailFile=" + mailFile +
+                '}';
     }
 
     public String getToAddress() {
@@ -73,22 +90,6 @@ public class MailSender implements Runnable {
 
     public void setToAddress(String toAddress) {
         this.toAddress = toAddress;
-    }
-
-    public String getFromAddress() {
-        return fromAddress;
-    }
-
-    public void setFromAddress(String fromAddress) {
-        this.fromAddress = fromAddress;
-    }
-
-    public String getStmpHost() {
-        return smtpHost;
-    }
-
-    public void setStmpHost(String stmpHost) {
-        this.smtpHost = stmpHost;
     }
 
     public String getSubject() {
@@ -104,6 +105,16 @@ public class MailSender implements Runnable {
     }
 
     public void setContent(Object content) {
-        content = content;
+        this.content = content;
     }
+
+    public File getMailFile() {
+        return mailFile;
+    }
+
+    public void setMailFile(File mailFile) {
+        this.mailFile = mailFile;
+    }
+
+
 }
