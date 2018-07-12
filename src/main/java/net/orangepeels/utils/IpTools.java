@@ -6,10 +6,10 @@ import com.maxmind.geoip2.model.CityResponse;
 import com.maxmind.geoip2.record.City;
 import com.maxmind.geoip2.record.Country;
 import com.maxmind.geoip2.record.Subdivision;
-import org.springframework.util.ResourceUtils;
+import org.springframework.core.io.ClassPathResource;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.InetAddress;
 
 public class IpTools {
@@ -22,7 +22,8 @@ public class IpTools {
 
     public void resolveIp(String ip) throws IOException, GeoIp2Exception {
         // 得到地区数据库文件
-        File database = ResourceUtils.getFile("classpath:common/GeoLite2-City.mmdb");
+        ClassPathResource resource = new ClassPathResource("common/GeoLite2-City.mmdb");
+        InputStream database = resource.getInputStream();
         // 读取数据库内容
         DatabaseReader reader = new DatabaseReader.Builder(database).build();
         InetAddress ipAddress = InetAddress.getByName(ip);
