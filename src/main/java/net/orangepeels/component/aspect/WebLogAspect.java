@@ -1,4 +1,4 @@
-package net.orangepeels.aspect;
+package net.orangepeels.component.aspect;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
