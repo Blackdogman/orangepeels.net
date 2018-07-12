@@ -43,7 +43,7 @@ public class MailSender implements Runnable {
             // 创建默认的 MimeMessage 对象
             MimeMessage message = new MimeMessage(session);
             // Set From: 头部头字段
-            message.setFrom(new InternetAddress(this.FROM_ADDRESS));
+            message.setFrom(new InternetAddress(FROM_ADDRESS));
             // Set To: 头部头字段
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(this.toAddress));
             // Set Subject: 头部头字段
