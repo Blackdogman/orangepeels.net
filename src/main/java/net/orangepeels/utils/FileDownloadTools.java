@@ -6,7 +6,7 @@ import java.util.Date;
 
 
 public class FileDownloadTools {
-    public static void copyFile(String fromPath, String toPath) throws IOException {
+    public static void downloadFile(String fromPath, String toPath) throws IOException {
         File fromFile = new File(fromPath);
         File toFile = new File(toPath);
 
@@ -28,7 +28,7 @@ public class FileDownloadTools {
         fileOutputStream.close();
     }
 
-    public static void copyFile(InputStream fromPath, String toPath) throws IOException {
+    public static void downloadFile(InputStream fromPath, String toPath) throws IOException {
         File toFile = new File(toPath);
         InputStream fileInputStream = fromPath;
         if (toFile.exists()) {
