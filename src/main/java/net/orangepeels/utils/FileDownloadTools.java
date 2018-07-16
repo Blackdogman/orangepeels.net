@@ -1,12 +1,29 @@
 package net.orangepeels.utils;
 
 import java.io.*;
+import java.net.URL;
+import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
 public class FileDownloadTools {
-    public static void downloadFile(String fromPath, String toPath) throws IOException {
+    public static void downLoadFile(String fileUrl, String downloadPath) throws IOException {
+        String fromPath = fileUrl;
+        String[] fromPathSplit = fromPath.split("/");
+        String fileName = fromPathSplit[fromPathSplit.length - 1];
+        String toPath = downloadPath + fileName;
+        URL url = new URL(fromPath);
+        URLConnection conn = url.openConnection();
+        InputStream fromInputStream = conn.getInputStream();
+        try {
+            doFiles(fromInputStream, toPath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void doFiles(String fromPath, String toPath) throws IOException {
         File fromFile = new File(fromPath);
         File toFile = new File(toPath);
 
@@ -28,7 +45,7 @@ public class FileDownloadTools {
         fileOutputStream.close();
     }
 
-    public static void downloadFile(InputStream fromPath, String toPath) throws IOException {
+    public static void doFiles(InputStream fromPath, String toPath) throws IOException {
         File toFile = new File(toPath);
         InputStream fileInputStream = fromPath;
         if (toFile.exists()) {
