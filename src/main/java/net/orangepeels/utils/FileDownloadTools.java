@@ -14,21 +14,16 @@ public class FileDownloadTools {
         String fileName = fromPathSplit[fromPathSplit.length - 1];
         String toPath = downloadPath + fileName;
         URL url;
+        URLConnection conn;
         try {
-            url = new URL(fileUrl);
+            url = new URL(fileUrl.trim());
+            fromInputStream = url.openStream();
         } catch (Exception ex) {
             return;
         }
-        URLConnection conn = url.openConnection();
-        if (conn != null && conn.getInputStream() != null) {
-            fromInputStream = conn.getInputStream();
-            try {
-                System.out.println("开始下载文件: " + fileUrl);
-                doFiles(fromInputStream, toPath);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        System.out.println(url);
+        System.out.println("开始下载文件: " + fileUrl);
+        doFiles(fromInputStream, toPath);
     }
 
     private static void doFiles(String fromPath, String toPath) throws IOException {
