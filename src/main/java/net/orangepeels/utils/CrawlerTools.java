@@ -13,6 +13,13 @@ import java.util.regex.Pattern;
  */
 public class CrawlerTools {
 
+    /**
+     * 爬取某个url上面的图片文件
+     *
+     * @param url          页面地址
+     * @param downloadPath 爬取后下载的地址
+     * @throws IOException 存在io，抛出异常
+     */
     public static void crawlerImg(String url, String downloadPath) throws IOException {
         List<String> imgUrlList = new ArrayList<>();
         URL urlC = new URL(url);

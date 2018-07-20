@@ -26,6 +26,13 @@ public class FileDownloadTools {
         doFiles(fromInputStream, toPath);
     }
 
+    /**
+     * 对于本地文件的复制
+     *
+     * @param fromPath 来源地址
+     * @param toPath   目标地址
+     * @throws IOException 抛出io异常
+     */
     private static void doFiles(String fromPath, String toPath) throws IOException {
         File fromFile = new File(fromPath);
         File toFile = new File(toPath);
@@ -48,6 +55,13 @@ public class FileDownloadTools {
         fileOutputStream.close();
     }
 
+    /**
+     * 针对流转为File的方法
+     *
+     * @param fromPath 来源流
+     * @param toPath   目标文件
+     * @throws IOException 抛出io异常
+     */
     private static void doFiles(InputStream fromPath, String toPath) throws IOException {
         File toFile = new File(toPath);
         InputStream fileInputStream = fromPath;
