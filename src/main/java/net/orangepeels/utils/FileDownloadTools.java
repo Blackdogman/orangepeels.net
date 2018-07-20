@@ -14,7 +14,6 @@ public class FileDownloadTools {
         String fileName = fromPathSplit[fromPathSplit.length - 1];
         String toPath = downloadPath + fileName;
         URL url;
-        URLConnection conn;
         try {
             url = new URL(fileUrl.trim());
             fromInputStream = url.openStream();
