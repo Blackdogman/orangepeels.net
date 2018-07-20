@@ -21,7 +21,6 @@ public class FileDownloadTools {
         } catch (Exception ex) {
             return;
         }
-        System.out.println(url);
         System.out.println("开始下载文件: " + fileUrl);
         doFiles(fromInputStream, toPath);
     }
