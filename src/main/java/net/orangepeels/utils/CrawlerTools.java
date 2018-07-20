@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
  */
 public class CrawlerTools {
 
-    public static void crawler(String url, String downloadPath) throws IOException {
+    public static void crawlerImg(String url, String downloadPath) throws IOException {
         List<String> imgUrlList = new ArrayList<>();
         URL urlC = new URL(url);
         urlC.openConnection();
