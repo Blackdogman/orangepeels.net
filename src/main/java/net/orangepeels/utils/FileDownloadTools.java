@@ -9,21 +9,29 @@ import java.util.Date;
 
 public class FileDownloadTools {
     public static void downLoadFile(String fileUrl, String downloadPath) throws IOException {
-        String fromPath = fileUrl;
-        String[] fromPathSplit = fromPath.split("/");
+        InputStream fromInputStream;
+        String[] fromPathSplit = fileUrl.split("/");
         String fileName = fromPathSplit[fromPathSplit.length - 1];
         String toPath = downloadPath + fileName;
-        URL url = new URL(fromPath);
-        URLConnection conn = url.openConnection();
-        InputStream fromInputStream = conn.getInputStream();
+        URL url;
         try {
-            doFiles(fromInputStream, toPath);
-        } catch (IOException e) {
-            e.printStackTrace();
+            url = new URL(fileUrl);
+        } catch (Exception ex) {
+            return;
+        }
+        URLConnection conn = url.openConnection();
+        if (conn != null && conn.getInputStream() != null) {
+            fromInputStream = conn.getInputStream();
+            try {
+                System.out.println("开始下载文件: " + fileUrl);
+                doFiles(fromInputStream, toPath);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    public static void doFiles(String fromPath, String toPath) throws IOException {
+    private static void doFiles(String fromPath, String toPath) throws IOException {
         File fromFile = new File(fromPath);
         File toFile = new File(toPath);
 
@@ -45,7 +53,7 @@ public class FileDownloadTools {
         fileOutputStream.close();
     }
 
-    public static void doFiles(InputStream fromPath, String toPath) throws IOException {
+    private static void doFiles(InputStream fromPath, String toPath) throws IOException {
         File toFile = new File(toPath);
         InputStream fileInputStream = fromPath;
         if (toFile.exists()) {
