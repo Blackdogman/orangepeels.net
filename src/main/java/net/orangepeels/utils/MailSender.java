@@ -14,7 +14,7 @@ import java.util.Properties;
 public class MailSender implements Runnable {
     private static final String FROM_ADDRESS = "superkidchy@foxmail.com";
     private static final String SMTP_HOST = "smtp.qq.com";
-    private static final String SMTP_KEY = "bW90aGVyand1amRsb2FveHZjYmNkZQ==";
+    private static final String SMTP_KEY = "bW90aGVydmtodGtobHF6aXlsYmNiZw==";
 
     private String toAddress;
     private String subject;
