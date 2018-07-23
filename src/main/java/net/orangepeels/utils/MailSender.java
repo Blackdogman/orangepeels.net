@@ -31,7 +31,7 @@ public class MailSender implements Runnable {
      */
     public void send() {
         Properties properties = System.getProperties();
-        properties.setProperty("mail.smtp.host", SMTP_HOST);
+        properties.put("mail.smtp.host", SMTP_HOST);
         properties.put("mail.smtp.auth", "true");
         try {
             String key = new String(EncryptTools.decryptBASE64(SMTP_KEY));
