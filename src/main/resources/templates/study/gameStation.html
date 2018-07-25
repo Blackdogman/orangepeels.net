@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>GAME STATION</title>
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon"/>
+    <!--引入CSS库-->
+    <div th:replace="model/importCss :: importCss"></div>
+</head>
+<body>
+<div class="container" id="content_body">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <img src="/game/getValCode.do" class="center-block" style="width: 250px; height: 100px;"/>
+        <div class="col-md-12 col-sm-12 col-xs-12" style="height: 20px;"></div>
+        <div class="col-md-12 col-sm-12 col-xs-12" style="height: 70px; border: 1px gainsboro solid;">
+            <div class="text-center">
+                <input type="text" oninput="dataChange(1)" class="well" style="width: 50px; height: 50px; font-size: 24px; margin-top: 10px;" maxlength="1"  name="number1" id="number1">
+                <input type="text" oninput="dataChange(2)" class="well" style="width: 50px; height: 50px; font-size: 24px; margin-top: 10px;" maxlength="1"  name="number2" id="number2">
+                <input type="text" oninput="dataChange(3)" class="well" style="width: 50px; height: 50px; font-size: 24px; margin-top: 10px;" maxlength="1"  name="number3" id="number3">
+                <input type="text" oninput="dataChange(4)" class="well" style="width: 50px; height: 50px; font-size: 24px; margin-top: 10px;" maxlength="1"  name="number4" id="number4">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<!--引入js库-->
+<div th:replace="model/importJs :: importJs"></div>
+<script>
+   function dataChange(number){
+        alert(number);
+   }
+</script>
+</html>

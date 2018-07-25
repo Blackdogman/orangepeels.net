@@ -76,7 +76,7 @@ public class ValCode {
         
         //----------------先画一个矩形作为验证码图片背景色--------------------
         //设置画笔的颜色，拿出绿色画笔
-        g.setColor(Color.green);  
+        g.setColor(new Color(255,255,255));
         //用绿色画笔画一个矩形，参数0，0是起始画笔的坐标，width,height是要画矩形的宽高度
         g.fillRect(0, 0, width, height); 
         

@@ -1,12 +1,8 @@
 package net.orangepeels.cotroller;
 
 import net.orangepeels.cotroller.frame.BaseController;
-import net.orangepeels.dao.BlogMarkDownDao;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class UrlController extends BaseController {
@@ -18,5 +14,10 @@ public class UrlController extends BaseController {
     @GetMapping("/playground")
     public String goToPlayground(){
         return "study/playground";
+    }
+
+    @GetMapping("/gameStation")
+    public String goToGameStation(){
+        return "study/gameStation";
     }
 }
