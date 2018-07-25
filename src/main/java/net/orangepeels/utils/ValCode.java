@@ -131,8 +131,7 @@ public class ValCode {
             randomCode.append(strRand); 
         
             
-        }  
-        System.out.println(randomCode);
+        }
         // 将四位数字的验证码传给属性code
         code = randomCode.toString();  
     }  

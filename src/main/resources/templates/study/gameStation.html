@@ -14,17 +14,17 @@
         <div class="col-md-12 col-sm-12 col-xs-12" style="height: 20px;"></div>
         <div class="col-md-12 col-sm-12 col-xs-12" style="height: 70px; border: 1px gainsboro solid;">
             <div class="text-center">
-                <input type="text" oninput="dataChange(1)" class="well"
-                       style="width: 60px; height: 60px; font-size: 20px; margin-top: 5px;" maxlength="1" name="number1"
+                <input type="text" oninput="dataChange(1)" class="well text-center"
+                       style="width: 60px; height: 60px; font-size: 24px; margin-top: 5px;" maxlength="1" name="number1"
                        id="number1">
-                <input type="text" oninput="dataChange(2)" class="well"
-                       style="width: 60px; height: 60px; font-size: 20px; margin-top: 5px;" maxlength="1" name="number2"
+                <input type="text" oninput="dataChange(2)" class="well text-center"
+                       style="width: 60px; height: 60px; font-size: 24px; margin-top: 5px;" maxlength="1" name="number2"
                        id="number2">
-                <input type="text" oninput="dataChange(3)" class="well"
-                       style="width: 60px; height: 60px; font-size: 20px; margin-top: 5px;" maxlength="1" name="number3"
+                <input type="text" oninput="dataChange(3)" class="well text-center"
+                       style="width: 60px; height: 60px; font-size: 24px; margin-top: 5px;" maxlength="1" name="number3"
                        id="number3">
-                <input type="text" oninput="dataChange(4)" class="well"
-                       style="width: 60px; height: 60px; font-size: 20px; margin-top: 5px;" maxlength="1" name="number4"
+                <input type="text" oninput="dataChange(4)" class="well text-center"
+                       style="width: 60px; height: 60px; font-size: 24px; margin-top: 5px;" maxlength="1" name="number4"
                        id="number4">
             </div>
         </div>
@@ -76,6 +76,7 @@
                     $("#number2").val("");
                     $("#number3").val("");
                     $("#number4").val("");
+                    $("#number1")[0].focus();
                 }
             });
         }
