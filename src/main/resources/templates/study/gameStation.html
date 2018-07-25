@@ -14,10 +14,18 @@
         <div class="col-md-12 col-sm-12 col-xs-12" style="height: 20px;"></div>
         <div class="col-md-12 col-sm-12 col-xs-12" style="height: 70px; border: 1px gainsboro solid;">
             <div class="text-center">
-                <input type="text" oninput="dataChange(1)" class="well" style="width: 50px; height: 50px; font-size: 24px; margin-top: 10px;" maxlength="1"  name="number1" id="number1">
-                <input type="text" oninput="dataChange(2)" class="well" style="width: 50px; height: 50px; font-size: 24px; margin-top: 10px;" maxlength="1"  name="number2" id="number2">
-                <input type="text" oninput="dataChange(3)" class="well" style="width: 50px; height: 50px; font-size: 24px; margin-top: 10px;" maxlength="1"  name="number3" id="number3">
-                <input type="text" oninput="dataChange(4)" class="well" style="width: 50px; height: 50px; font-size: 24px; margin-top: 10px;" maxlength="1"  name="number4" id="number4">
+                <input type="text" oninput="dataChange(1)" class="well"
+                       style="width: 60px; height: 60px; font-size: 20px; margin-top: 5px;" maxlength="1" name="number1"
+                       id="number1">
+                <input type="text" oninput="dataChange(2)" class="well"
+                       style="width: 60px; height: 60px; font-size: 20px; margin-top: 5px;" maxlength="1" name="number2"
+                       id="number2">
+                <input type="text" oninput="dataChange(3)" class="well"
+                       style="width: 60px; height: 60px; font-size: 20px; margin-top: 5px;" maxlength="1" name="number3"
+                       id="number3">
+                <input type="text" oninput="dataChange(4)" class="well"
+                       style="width: 60px; height: 60px; font-size: 20px; margin-top: 5px;" maxlength="1" name="number4"
+                       id="number4">
             </div>
         </div>
     </div>
@@ -26,8 +34,51 @@
 <!--引入js库-->
 <div th:replace="model/importJs :: importJs"></div>
 <script>
-   function dataChange(number){
-        alert(number);
-   }
+    function dataChange(number) {
+        switch (number) {
+            case 1:
+                $("#number2")[0].focus();
+                break;
+            case 2:
+                $("#number3")[0].focus();
+                break;
+            case 3:
+                $("#number4")[0].focus();
+                break;
+            case 4:
+                $("#number1")[0].focus();
+                break;
+        }
+        var number1 = $("#number1").val();
+        var number2 = $("#number2").val();
+        var number3 = $("#number3").val();
+        var number4 = $("#number4").val();
+        if (number1 !== "" && null != number1 &&
+            number2 !== "" && null != number2 &&
+            number3 !== "" && null != number3 &&
+            number4 !== "" && null != number4) {
+            $.ajax({
+                url: "/game/submitGameCode.do",
+                data: {
+                    "number1": number1,
+                    "number2": number2,
+                    "number3": number3,
+                    "number4": number4
+                },
+                type: "post",
+                success: function (req) {
+                    if(req === 1){
+                        $("#content_body").css("background-color", "green");
+                    }else {
+                        $("#content_body").css("background-color", "red");
+                    }
+                    $("#number1").val("");
+                    $("#number2").val("");
+                    $("#number3").val("");
+                    $("#number4").val("");
+                }
+            });
+        }
+    }
 </script>
 </html>
