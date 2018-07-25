@@ -35,6 +35,6 @@ public class EncryptTools {
      */
     public static String encryptBASE64(byte[] key) throws Exception {
         String str = KEY + new String(key);
-        return (new BASE64Encoder()).encodeBuffer(str.getBytes());
+        return (new BASE64Encoder()).encodeBuffer(str.getBytes()).replaceAll("[\\s*\t\n\r]", "");
     }
 }
