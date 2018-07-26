@@ -5,9 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.OutputStream;
 
 @RestController
 @RequestMapping("/game")
@@ -21,10 +24,14 @@ public class GameController {
 
     @RequestMapping("/getValCode.do")
     public void getValCode(HttpServletResponse response, HttpSession session) throws IOException {
-        valCode.createCode();
+        Object[] valCodeBuffer = valCode.createCode();
         session.setAttribute("gameValCode", valCode.getCode());
         response.setContentType("img/png");
-        valCode.write(response.getOutputStream());
+        //将图片输出给浏览器
+        BufferedImage image = (BufferedImage) valCodeBuffer[1];
+        response.setContentType("image/png");
+        OutputStream os = response.getOutputStream();
+        ImageIO.write(image, "png", os);
     }
 
     @RequestMapping("/submitGameCode.do")
@@ -34,9 +41,9 @@ public class GameController {
                 number2 +
                 number3 +
                 number4;
-        if(gameValCode.equalsIgnoreCase(answer)){
+        if (gameValCode.equalsIgnoreCase(answer)) {
             return 1;
-        }else{
+        } else {
             return 0;
         }
     }
