@@ -18,6 +18,11 @@ public class UrlController extends BaseController {
 
     @GetMapping("/gameStation")
     public String goToGameStation(){
-        return "study/gameStation";
+        return "gameStation/gameStationMain";
+    }
+
+    @GetMapping("/gameStation/valCodeGame")
+    public String goToValCodeGame(){
+        return "gameStation/valCodeGame";
     }
 }

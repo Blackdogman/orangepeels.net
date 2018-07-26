@@ -10,23 +10,33 @@
 <body>
 <div class="container" id="content_body">
     <div class="col-md-12 col-sm-12 col-xs-12">
-        <img src="/game/getValCode.do" class="center-block" style="width: 250px; height: 100px;"/>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <h3>剩余生命值：<span id="hp"></span></h3>
+        </div>
+        <img src="/game/getValCode.do" id="valCodeImg" class="center-block" style="width: 250px; height: 100px;"/>
         <div class="col-md-12 col-sm-12 col-xs-12" style="height: 20px;"></div>
         <div class="col-md-12 col-sm-12 col-xs-12" style="height: 70px;">
             <div class="text-center">
                 <input type="text" oninput="dataChange(1)" class="well text-center"
-                       style="width: 60px; height: 60px; font-size: 24px; margin-top: 5px;" maxlength="1" name="number1"
+                       style="text-transform:uppercase; width: 60px; height: 60px; font-size: 24px; margin-top: 5px;"
+                       maxlength="1" name="number1"
                        id="number1">
                 <input type="text" oninput="dataChange(2)" class="well text-center"
-                       style="width: 60px; height: 60px; font-size: 24px; margin-top: 5px;" maxlength="1" name="number2"
+                       style="text-transform:uppercase; width: 60px; height: 60px; font-size: 24px; margin-top: 5px;"
+                       maxlength="1" name="number2"
                        id="number2">
                 <input type="text" oninput="dataChange(3)" class="well text-center"
-                       style="width: 60px; height: 60px; font-size: 24px; margin-top: 5px;" maxlength="1" name="number3"
+                       style="text-transform:uppercase; width: 60px; height: 60px; font-size: 24px; margin-top: 5px;"
+                       maxlength="1" name="number3"
                        id="number3">
                 <input type="text" oninput="dataChange(4)" class="well text-center"
-                       style="width: 60px; height: 60px; font-size: 24px; margin-top: 5px;" maxlength="1" name="number4"
+                       style="text-transform:uppercase; width: 60px; height: 60px; font-size: 24px; margin-top: 5px;"
+                       maxlength="1" name="number4"
                        id="number4">
             </div>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12" style="font-size:24px;" id="messageBox">
+
         </div>
     </div>
 </div>
@@ -34,6 +44,12 @@
 <!--引入js库-->
 <div th:replace="model/importJs :: importJs"></div>
 <script>
+    var hp = 3;
+
+    $(function () {
+        $("#hp").html(hp);
+    });
+
     function dataChange(number) {
         switch (number) {
             case 1:
@@ -67,16 +83,26 @@
                 },
                 type: "post",
                 success: function (req) {
-                    if(req === 1){
-                        $("#content_body").css("background-color", "green");
-                    }else {
-                        $("#content_body").css("background-color", "red");
+                    if (req === 1) {
+                        $("#messageBox").prepend("<span style='color: green;'>+1<br></span>");
+                    } else {
+                        hp -= 1;
+                        if (hp === 0) {
+                            alert("傻屌！你输了");
+                            $("#messageBox").html("");
+                            hp = 3;
+                        }
+                        $("#hp").html(hp);
+                        $("#messageBox").prepend("<span style='color:red;'>-1<br></span>");
                     }
                     $("#number1").val("");
                     $("#number2").val("");
                     $("#number3").val("");
                     $("#number4").val("");
                     $("#number1")[0].focus();
+                    var oldSrc = $("#valCodeImg").attr("src");
+                    var getTimestamp = new Date().getTime();
+                    $("#valCodeImg").attr("src", oldSrc + "?timestamp=" + getTimestamp);
                 }
             });
         }
