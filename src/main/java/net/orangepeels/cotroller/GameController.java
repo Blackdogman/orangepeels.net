@@ -26,12 +26,12 @@ public class GameController {
     public void getValCode(HttpServletResponse response, HttpSession session) throws IOException {
         Object[] valCodeBuffer = valCode.createCode();
         session.setAttribute("gameValCode", valCode.getCode());
-        response.setContentType("img/png");
         //将图片输出给浏览器
         BufferedImage image = (BufferedImage) valCodeBuffer[1];
         response.setContentType("image/png");
         OutputStream os = response.getOutputStream();
         ImageIO.write(image, "png", os);
+        os.close();
     }
 
     @RequestMapping("/submitGameCode.do")
