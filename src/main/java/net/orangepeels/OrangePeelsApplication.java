@@ -38,7 +38,7 @@ public class OrangePeelsApplication implements WebMvcConfigurer {
         properties.setProperty(Constants.KAPTCHA_TEXTPRODUCER_FONT_SIZE, "50");
         properties.setProperty(Constants.KAPTCHA_TEXTPRODUCER_FONT_NAMES, "宋体,楷体,微软雅黑");
         properties.setProperty(Constants.KAPTCHA_TEXTPRODUCER_CHAR_LENGTH, "4");
-        properties.setProperty(Constants.KAPTCHA_TEXTPRODUCER_CHAR_STRING, "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+        properties.setProperty(Constants.KAPTCHA_TEXTPRODUCER_CHAR_STRING, "123456789ABCDEFGHIJKLMNPQRSTUVWXYZ");
         properties.setProperty(Constants.KAPTCHA_IMAGE_WIDTH, "200");
         properties.setProperty(Constants.KAPTCHA_IMAGE_HEIGHT, "50");
         properties.setProperty(Constants.KAPTCHA_SESSION_CONFIG_KEY, "code");
