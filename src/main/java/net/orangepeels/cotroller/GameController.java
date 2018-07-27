@@ -1,11 +1,13 @@
 package net.orangepeels.cotroller;
 
+import com.google.code.kaptcha.Producer;
 import net.orangepeels.utils.ValCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.imageio.ImageIO;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
@@ -16,10 +18,12 @@ import java.io.OutputStream;
 @RequestMapping("/game")
 public class GameController {
     private final ValCode valCode;
+    private final Producer kaptchaProducer;
 
     @Autowired
-    public GameController(ValCode valCode) {
+    public GameController(ValCode valCode, Producer kaptchaProducer) {
         this.valCode = valCode;
+        this.kaptchaProducer = kaptchaProducer;
     }
 
     @RequestMapping("/getValCode.do")
@@ -32,6 +36,22 @@ public class GameController {
         OutputStream os = response.getOutputStream();
         ImageIO.write(image, "png", os);
         os.close();
+    }
+
+    @RequestMapping("/kaptcha.do")
+    public void kaptcha(HttpServletResponse response, HttpSession session) throws IOException {
+        response.setContentType("image/png");
+        String capText = kaptchaProducer.createText();
+        session.setAttribute("gameValCode", capText);
+        BufferedImage bi = kaptchaProducer.createImage(capText);
+        ServletOutputStream out = response.getOutputStream();
+        // write the data out
+        ImageIO.write(bi, "jpg", out);
+        try {
+            out.flush();
+        } finally {
+            out.close();
+        }
     }
 
     @RequestMapping("/submitGameCode.do")
