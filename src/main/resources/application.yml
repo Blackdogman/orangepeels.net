@@ -2,7 +2,7 @@ server:
   port: 8080
   connection-timeout: 30m
   tomcat:
-    max-threads: 10
+    max-threads: 30
     uri-encoding: utf-8
 spring:
   datasource:
