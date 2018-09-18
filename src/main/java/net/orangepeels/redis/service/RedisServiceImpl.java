@@ -22,7 +22,7 @@ public class RedisServiceImpl implements RedisService {
 
     @Override
     public Map<String, Object> getValue(String key) {
-        String type = jedis.type(key);
+        String type = jedis.type(key); // 得到key所对应的对象类型
         Map<String, Object> reMap = new HashMap<>();
         if("string".equals(type)){
             reMap.put(key, jedis.get(key));
