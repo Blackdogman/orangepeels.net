@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class RedisServiceImpl implements RedisService {
@@ -23,16 +21,19 @@ public class RedisServiceImpl implements RedisService {
     }
 
     @Override
-    public List<String> getValue(String key) {
+    public Map<String, Object> getValue(String key) {
         String type = jedis.type(key);
-        List<String> reList = new ArrayList<>();
+        Map<String, Object> reMap = new HashMap<>();
         if("string".equals(type)){
-            reList.add(jedis.get(key));
+            reMap.put(key, jedis.get(key));
         }
         if("list".equals(type)){
-            reList.addAll(jedis.lrange(key, 0, 999));
+            reMap.put(key, jedis.lrange(key, 0, 999));
         }
-        return reList;
+        if("hash".equals(type)){
+            reMap.putAll(jedis.hgetAll(key));
+        }
+        return reMap;
     }
 
     @Override
