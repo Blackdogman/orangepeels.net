@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -18,7 +19,7 @@ public class RedisController {
     }
 
     @RequestMapping(value = "/redis/get/{key}")
-    public String redisGetKey(@PathVariable("key") String key){
+    public List<String> redisGetKey(@PathVariable("key") String key){
         return redisService.getValue(key);
     }
 
