@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import redis.clients.jedis.Jedis;
 
 import java.util.Properties;
 
@@ -45,6 +46,11 @@ public class OrangePeelsApplication implements WebMvcConfigurer {
         Config config = new Config(properties);
         captchaProducer.setConfig(config);
         return captchaProducer;
+    }
+
+    @Bean
+    public Jedis jedis(){
+        return new Jedis("127.0.0.1");
     }
 }
 
