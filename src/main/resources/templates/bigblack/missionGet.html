@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MISSION GET!</title>
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon"/>
+    <!--引入CSS库-->
+    <div th:replace="model/importCss :: importCss"></div>
+</head>
+<body>
+<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9"></div>
+<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+    <a href="/bigblack/missionSet" class="btn btn-danger">设置</a>
+</div>
+<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+<div class="container" id="content_body">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <button class="btn btn-success center-block" onclick="">ROLL!!!!!!!!</button>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="height: 15px;"></div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center" style="font-size: 16pt;">
+        今天的题目是【<span id="rollStyle">$style$</span>】风格的【<span id="rollCulture">$Culture$</span>】的【<span id="rollType">$type$</span>】
+    </div>
+</div>
+</body>
+<!--引入js库-->
+<div th:replace="model/importJs :: importJs"></div>
+</html>

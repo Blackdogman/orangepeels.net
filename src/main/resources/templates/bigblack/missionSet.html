@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MISSION GET!</title>
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon"/>
+    <!--引入CSS库-->
+    <div th:replace="model/importCss :: importCss"></div>
+</head>
+<body>
+<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9"></div>
+<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+    <a href="/bigblack/missionGet" class="btn btn-danger">BACK</a>
+</div>
+<div class="container" id="content_body">
+    <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <span id="currentSel">选择关键词位置</span>
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="javascript:" onclick="clickSel(0);">第一个空</a></li>
+            <li><a href="javascript:" onclick="clickSel(1);">第二个空</a></li>
+            <li><a href="javascript:" onclick="clickSel(2);">第三个空</a></li>
+        </ul>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="height: 15px;"></div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 jumbotron">
+
+    </div>
+</div>
+</body>
+<!--引入js库-->
+<div th:replace="model/importJs :: importJs"></div>
+<script>
+    function clickSel(index) {
+
+    }
+</script>
+</html>

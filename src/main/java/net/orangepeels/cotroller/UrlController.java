@@ -25,4 +25,14 @@ public class UrlController extends BaseController {
     public String goToValCodeGame(){
         return "gameStation/valCodeGame";
     }
+
+    @GetMapping("/bigblack/missionGet")
+    public String gotoBBmissionGet(){
+        return "bigblack/missionGet";
+    }
+
+    @GetMapping("/bigblack/missionSet")
+    public String gotoBBmissionSet(){
+        return "bigblack/missionSet";
+    }
 }
