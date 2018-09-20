@@ -10,7 +10,7 @@ import redis.clients.jedis.Jedis;
 import java.util.Properties;
 
 @Configuration
-public class RegBeans {
+public class BeanConfig {
     @Bean
     public DefaultKaptcha captchaProducer() {
         DefaultKaptcha captchaProducer = new DefaultKaptcha();
