@@ -3,9 +3,6 @@ package net.orangepeels.utils;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
 public class EncryptTools {
     private static final String KEY = "mother";
 
