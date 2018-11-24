@@ -19,7 +19,7 @@ public class EncryptTools {
      */
     public static byte[] decryptBASE64(String key) throws Exception {
         key = new String((new BASE64Decoder()).decodeBuffer(key));
-        key = key.substring(KEY.length(), key.length());
+        key = key.substring(KEY.length());
         return key.getBytes();
     }
 
