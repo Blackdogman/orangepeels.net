@@ -6,9 +6,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class UrlController extends BaseController {
-    @GetMapping("/")
+    @GetMapping("/oldhome")
     public String WelcomeToWebsite(){
         return "homePage";
+    }
+
+    @GetMapping("/")
+    public String WhatFuckIsThis(){
+        return "whatFuckIsThis";
     }
 
     @GetMapping("/playground")

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>WhatFuckIsThis?</title>
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon"/>
+    <!--引入CSS库-->
+    <div th:replace="model/importCss :: importCss"></div>
+    <style>
+        body{
+            font-family: "PingHei","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
+            background-color: black;
+            height: 100%;
+        }
+        .topFont{
+            color: red;
+        }
+        .howFarWithTop{
+            height: 25%;
+            font-size: 16pt;
+            color: black;
+        }
+        .myContent{
+            letter-spacing:20px;
+        }
+        .topFont{
+            font-weight: bold;
+        }
+
+        @keyframes blink{
+            0%{opacity: 1;}
+            100%{opacity: 0;}
+        }
+        /* 添加兼容性前缀 */
+        @-webkit-keyframes blink {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        @-moz-keyframes blink {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        @-ms-keyframes blink {
+            0% {opacity: 1; }
+            100% { opacity: 0;}
+        }
+        @-o-keyframes blink {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        /* 定义blink类*/
+        .blink{
+            color: #dd4814;
+            animation: blink 1s linear infinite;
+            /* 其它浏览器兼容性前缀 */
+            -webkit-animation: blink 1s linear infinite;
+            -moz-animation: blink 1s linear infinite;
+            -ms-animation: blink 1s linear infinite;
+            -o-animation: blink 1s linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="howFarWithTop text-center container col-lg-12 col-md-12 col-sm-12 col-xs-12">can i get the light?</div>
+    <div class="myContent container col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h1 class="topFont center-block text-center">BLACKDOGMAN</h1>
+        <br>
+        <h1 class="topFont center-block text-center">
+            <span style="font-weight: normal; letter-spacing:0;">________</span>
+            PROJEC<span style="letter-spacing:0;">T</span>
+            <span class="blink" style="font-weight: normal; letter-spacing:0;">| </span>
+        </h1>
+    </div>
+</body>
+<!--引入js库-->
+<div th:replace="model/importJs :: importJs"></div>
+</html>
