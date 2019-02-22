@@ -6,7 +6,7 @@
 ### 基于Spring Cloud的orangepeels.net正在构建中
 - url: [github-orangecloud](https://github.com/Blackdogman/orangeCloud)
 ## How can i visit this?
-- url: [orangepeels.net](http://118.126.108.47)
+- url: [orangepeels.net](http://118.24.88.144:8080/)
 - blog: [blackdogman.github.io](http://blackdogman.github.io/)
 ## Bulid by?
 - [SpringBoot](https://projects.spring.io/spring-boot/)
